@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    apiHost: '',
     modulePrefix: 'frolfr-web',
     environment: environment,
     rootURL: '/',
@@ -43,7 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.apiHost = "https://frolfr.herokuapp.com";
   }
 
   return ENV;
