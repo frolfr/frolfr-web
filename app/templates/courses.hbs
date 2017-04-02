@@ -1,9 +1,5 @@
 <h1>Courses</h1>
 
-<ul>
-  {{#each model as |course|}}
-    <li>{{course.name}}</li>
-  {{/each}}
-</ul>
+{{filterable-resource filteredList=filteredList autoComplete=(action 'autoComplete')}}
 
 {{outlet}}

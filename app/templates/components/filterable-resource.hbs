@@ -1,0 +1,9 @@
+Search: {{input value=filter key-up=(action 'autoComplete' filter)}}
+
+<ul>
+  {{#each filteredList as |item|}}
+    <li>{{item.name}}</li>
+  {{/each}}
+</ul>
+
+{{yield}}
