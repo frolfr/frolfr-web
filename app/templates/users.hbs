@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<ul>
+  {{#each model as |user|}}
+    <li>{{user.firstName}} {{user.lastName}}</li>
+  {{/each}}
+</ul>
+
+{{outlet}}
