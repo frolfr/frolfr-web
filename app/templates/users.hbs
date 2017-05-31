@@ -2,7 +2,11 @@
 
 <ul>
   {{#each model as |user|}}
-    <li>{{user.firstName}} {{user.lastName}}</li>
+    <li>
+      {{#link-to 'user.scorecards' user.id}}
+        {{user.firstName}} {{user.lastName}}
+      {{/link-to}}
+    </li>
   {{/each}}
 </ul>
 

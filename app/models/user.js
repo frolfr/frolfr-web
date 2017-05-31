@@ -5,5 +5,7 @@ export default DS.Model.extend({
   middleName: DS.attr('string'),
   lastName: DS.attr('string'),
   email: DS.attr('string'),
-  avatarUrl: DS.attr('number')
+  avatarUrl: DS.attr('number'),
+
+  scorecards: DS.hasMany('scorecards')
 });

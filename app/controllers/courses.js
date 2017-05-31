@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
 
   actions: {
     autoComplete(param) {
-      if(param !== '') {
+      if(param.trim() !== '') {
         this.store.query('course', { filter: { name: param }}).then((result) => {
           this.set('filteredList', result);
         });
