@@ -2,6 +2,8 @@
 
 {{#each model as |scorecard|}}
   <li>
-    {{scorecard.createdAt}}
+    {{#link-to 'round' scorecard.roundId}}
+      {{scorecard.createdAt}}
+    {{/link-to}}
   </li>
 {{/each}}
