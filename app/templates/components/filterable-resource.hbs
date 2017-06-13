@@ -2,7 +2,9 @@ Search: {{input value=filter key-up=(action 'autoComplete' filter)}}
 
 <ul>
   {{#each filteredList as |item|}}
-    <li>{{item.name}}</li>
+    <li>
+      {{link-to item.name 'course' item}}
+    </li>
   {{/each}}
 </ul>
 

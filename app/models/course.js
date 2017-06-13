@@ -5,5 +5,7 @@ export default DS.Model.extend({
   state: DS.attr('string'),
   country: DS.attr('string'),
   name: DS.attr('string'),
-  holeCount: DS.attr('number')
+  holeCount: DS.attr('number'),
+
+  rounds: DS.hasMany('round')
 });

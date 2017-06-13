@@ -1,0 +1,9 @@
+<h1>{{model.name}} - {{model.city}}, {{model.state}}</h1>
+
+{{#each model.rounds as |round|}}
+  <li>
+    {{#link-to 'round' round}}
+      {{round.createdAt}}
+    {{/link-to}}
+  </li>
+{{/each}}
