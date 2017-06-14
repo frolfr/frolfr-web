@@ -1,13 +1,7 @@
 <h1>Users</h1>
 
-<ul>
-  {{#each model as |user|}}
-    <li>
-      {{#link-to 'user.scorecards' user.id}}
-        {{user.firstName}} {{user.lastName}}
-      {{/link-to}}
-    </li>
-  {{/each}}
-</ul>
+{{filterable-resource
+  filteredList=filteredList
+  modelName='user'}}
 
 {{outlet}}

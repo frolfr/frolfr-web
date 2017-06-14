@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   firstName: DS.attr('string'),
@@ -7,5 +8,9 @@ export default DS.Model.extend({
   email: DS.attr('string'),
   avatarUrl: DS.attr('number'),
 
-  scorecards: DS.hasMany('scorecards')
+  scorecards: DS.hasMany('scorecards'),
+
+  name: Ember.computed('firstName', 'lastName', function() {
+    return `${this.get('firstName')} ${this.get('lastName')}`;
+  })
 });
