@@ -1,5 +1,7 @@
 <h1>Courses</h1>
 
-{{filterable-resource filteredList=filteredList autoComplete=(action 'autoComplete')}}
+{{filterable-resource
+  filteredList=filteredList
+  modelName='course'}}
 
 {{outlet}}

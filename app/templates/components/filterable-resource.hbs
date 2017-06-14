@@ -3,7 +3,7 @@ Search: {{input value=filter key-up=(action 'autoComplete' filter)}}
 <ul>
   {{#each filteredList as |item|}}
     <li>
-      {{link-to item.name 'course' item}}
+      {{link-to item.name modelName item}}
     </li>
   {{/each}}
 </ul>
