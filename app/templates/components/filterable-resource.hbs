@@ -1,11 +1,13 @@
 Search: {{input value=filter key-up=(action 'autoComplete' filter)}}
 
-<ul>
-  {{#each filteredList as |item|}}
-    <li>
-      {{link-to item.name modelName item}}
-    </li>
-  {{/each}}
-</ul>
-
-{{yield}}
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  <ul>
+    {{#each filteredList as |item|}}
+      <li>
+        {{link-to item.name modelName item}}
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
