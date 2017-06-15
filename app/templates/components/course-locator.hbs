@@ -1,0 +1,23 @@
+<button {{action 'locateNearest'}} class='btn btn-primary' disabled={{isSearching}}>
+  {{#if isSearching}}
+    Searching...
+  {{else}}
+    Find location
+  {{/if}}
+</button>
+<br>
+
+{{#if foundLocation}}
+  Latitude {{latitude}}<br>
+  Longitude {{longitude}}
+{{/if}}
+<br>
+
+{{#if courses}}
+  Nearby courses
+  <ul>
+    {{#each courses as |course|}}
+      <li>{{course.name}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
