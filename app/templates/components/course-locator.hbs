@@ -7,17 +7,21 @@
 </button>
 <br>
 
-{{#if foundLocation}}
-  Latitude {{latitude}}<br>
-  Longitude {{longitude}}
-{{/if}}
-<br>
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{#if foundLocation}}
+    Latitude {{latitude}}<br>
+    Longitude {{longitude}}
+  {{/if}}
+  <br>
 
-{{#if courses}}
-  Nearby courses
-  <ul>
-    {{#each courses as |course|}}
-      <li>{{course.name}}</li>
-    {{/each}}
-  </ul>
+  {{#if courses}}
+    Nearby courses
+    <ul>
+      {{#each courses as |course|}}
+        <li>{{course.name}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
 {{/if}}

@@ -1,0 +1,35 @@
+Players
+{{#filterable-resource
+  filteredList=users
+  modelName='user'}}
+  <ul>
+    {{#each users as |user|}}
+      <li>{{user.name}}</li>
+    {{/each}}
+  </ul>
+{{/filterable-resource}}
+
+{{#if course}}
+  Selected course: {{course.name}}<br>
+  <button {{action 'cancelCourse'}} class='btn btn-primary'>Cancel</button>
+{{else}}
+  Courses
+  {{#filterable-resource
+    filteredList=searchedCourses
+    modelName='course'}}
+    <ul>
+      {{#each searchedCourses as |course|}}
+        <li><a {{action 'addCourse' course}}>{{course.name}}</a></li>
+      {{/each}}
+    </ul>
+  {{/filterable-resource}}
+
+  {{#course-locator
+    courses=locatedCourses}}
+    <ul>
+      {{#each locatedCourses as |course|}}
+        <li><a {{action 'addCourse' course}}>{{course.name}}</a></li>
+      {{/each}}
+    </ul>
+  {{/course-locator}}
+{{/if}}
