@@ -7,6 +7,15 @@ export default Ember.Component.extend({
   searchedUsers: null,
   userFilter: null,
 
+  willDestroyElement() {
+    let model = this.get('model');
+
+    if (model.get('isNew')) { return model.destroyRecord(); }
+
+    model.rollbackAttributes();
+    this._super(...arguments);
+  },
+
   actions: {
     addCourse(course) {
       this.get('model').set('course', course);
