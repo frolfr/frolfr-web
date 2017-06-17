@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  didSave: null,
   locatedCourses: null,
   model: null,
   searchedCourses: null,
@@ -52,6 +53,11 @@ export default Ember.Component.extend({
 
     removeUser(user) {
       this.get('model.users').removeObject(user);
+    },
+
+    save() {
+      this.get('model').save()
+      .then((round) => this.sendAction('didSave', round));
     }
   }
 });
