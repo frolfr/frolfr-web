@@ -18,6 +18,11 @@ export default Ember.Component.extend({
 
   actions: {
     addCourse(course) {
+      this.setProperties({
+        locatedCourses: null,
+        searchedCourses: null
+      });
+      
       this.get('model').set('course', course);
     },
 
@@ -31,11 +36,6 @@ export default Ember.Component.extend({
     },
 
     removeCourse() {
-      this.setProperties({
-        locatedCourses: null,
-        searchedCourses: null
-      });
-
       this.get('model').set('course', null);
     },
 
