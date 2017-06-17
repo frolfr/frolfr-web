@@ -7,6 +7,17 @@ export default Ember.Component.extend({
   searchedUsers: null,
   userFilter: null,
 
+  availableUsers: Ember.computed('model.users.[]', 'searchedUsers.[]', function() {
+    const searchedUsers = this.get('searchedUsers');
+    if (!searchedUsers) return;
+
+    const users = this.get('model.users');
+
+    users.forEach(function(user) { searchedUsers.removeObject(user); });
+
+    return searchedUsers;
+  }),
+
   willDestroyElement() {
     let model = this.get('model');
 
@@ -22,7 +33,7 @@ export default Ember.Component.extend({
         locatedCourses: null,
         searchedCourses: null
       });
-      
+
       this.get('model').set('course', course);
     },
 

@@ -13,7 +13,7 @@ Search for players
   filteredList=searchedUsers
   modelName='user'}}
   <ul>
-    {{#each searchedUsers as |user|}}
+    {{#each availableUsers as |user|}}
       <li><a {{action 'addUser' user}}>{{user.name}}</a></li>
     {{/each}}
   </ul>
