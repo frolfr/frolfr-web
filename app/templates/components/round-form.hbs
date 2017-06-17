@@ -9,8 +9,8 @@ Players
   </ul>
 {{/filterable-resource}}
 
-{{#if course}}
-  Selected course: {{course.name}}<br>
+{{#if model.course}}
+  Selected course: {{model.course.name}}<br>
   <button {{action 'cancelCourse'}} class='btn btn-primary'>Cancel</button>
 {{else}}
   Courses

@@ -1,19 +1,22 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  course: null,
+  locatedCourses: null,
+  model: null,
+  searchedCourse: null,
 
   actions: {
     addCourse(course) {
-      this.set('course', course);
+      this.get('model').set('course', course);
     },
 
     cancelCourse() {
       this.setProperties({
-        course: null,
         locatedCourses: null,
         searchedCourses: null
       });
+
+      this.get('model').set('course', null);
     }
   }
 });
