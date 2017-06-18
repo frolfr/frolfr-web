@@ -1,0 +1,18 @@
+<thead>
+  <tr>
+    <th></th>
+    {{#each scorecards as |scorecard|}}
+      <th>{{scorecard.user.name}}</th>
+    {{/each}}
+  </tr>
+</thead>
+<tbody>
+  {{#each holeNumbers as |holeNumber|}}
+    {{#link-to 'round.turns' round holeNumber tagName='tr'}}
+      <th>{{holeNumber}}</th>
+      {{#each scorecards as |scorecard|}}
+        {{scorecard-turn holeNumber=holeNumber scorecard=scorecard tagName='td'}}
+      {{/each}}
+    {{/link-to}}
+  {{/each}}
+</tbody>

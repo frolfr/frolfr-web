@@ -1,10 +1,11 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  city: DS.attr('string'),
-  state: DS.attr('string'),
   country: DS.attr('string'),
+  city: DS.attr('string'),
+  holeCount: DS.attr('number'),
   name: DS.attr('string'),
+  state: DS.attr('string'),
 
   rounds: DS.hasMany('round')
 });
