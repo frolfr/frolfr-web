@@ -3,15 +3,4 @@
   <h4>{{model.createdAt}}</h4>
 </header>
 
-{{#each model.scorecards as |scorecard|}}
-  <h4>{{scorecard.user.firstName}} {{scorecard.user.lastName}}</h4>
-  <ul>
-    {{#each scorecard.turns as |turn index|}}
-      <li>
-        Hole {{index}} - Strokes: {{turn.strokes}}, Par: {{turn.par}}
-      </li>
-    {{/each}}
-  </ul>
-{{/each}}
-
 {{outlet}}

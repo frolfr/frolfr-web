@@ -1,0 +1,12 @@
+{{#each model.scorecards as |scorecard|}}
+  <h4>{{scorecard.user.firstName}} {{scorecard.user.lastName}}</h4>
+  <ul>
+    {{#each scorecard.turns as |turn index|}}
+      <li>
+        {{#link-to 'round.turns' model index}}
+          Hole {{index}} - Strokes: {{turn.strokes}}, Par: {{turn.par}}
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+{{/each}}
