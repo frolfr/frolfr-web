@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return this.modelFor('round').get('scorecards');
+    return this.modelFor('round');
   },
 
   setupController(controller, model) {

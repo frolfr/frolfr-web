@@ -1,0 +1,7 @@
+{{#each round.scorecards as |scorecard|}}
+  {{turn-form
+    edit=(action 'edit')
+    editId=editId
+    holeNumber=holeNumber
+    scorecard=scorecard}}
+{{/each}}

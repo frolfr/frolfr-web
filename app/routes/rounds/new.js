@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 
   actions: {
     goToRound(round) {
-      this.transitionTo('round', round);
+      this.transitionTo('round.turns', round, 1);
     }
   }
 });

@@ -1,0 +1,16 @@
+<a {{action edit scorecard.id}}>
+  {{scorecard.user.name}} | {{if turn.strokes turn.strokes '-'}}
+</a>
+
+<br>
+
+{{#if isEditingScorecard}}
+  Edit
+  <ul>
+    {{#each strokesOptions as |strokes|}}
+      <li>
+        <a {{action 'save' strokes}}>{{if strokes strokes 'Skip'}}</a>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
