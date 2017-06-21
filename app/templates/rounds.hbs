@@ -2,17 +2,6 @@
 
 <ul>
   {{#each model as |round|}}
-    <li>
-      {{#link-to 'round' round}}
-        {{round.createdAt}} {{round.id}}
-        <ul>
-          {{#each round.scorecards as |scorecard|}}
-            <li>
-              {{scorecard.user.firstName}} {{scorecard.user.lastName}}
-            </li>
-          {{/each}}
-        </ul>
-      {{/link-to}}
-    </li>
+    {{round-resource round=round}}
   {{/each}}
 </ul>
