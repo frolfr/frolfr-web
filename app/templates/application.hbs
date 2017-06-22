@@ -1,5 +1,11 @@
 <div class='container'>
-  {{link-to '+ New Round' 'rounds.new'}} | {{link-to 'Courses' 'courses'}} | {{link-to 'Users' 'users'}} | {{link-to 'Rounds' 'rounds'}}
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#nav.item}}{{#nav.link-to 'rounds.new'}}+ New Round{{/nav.link-to}}{{/nav.item}}
+    {{#nav.item}}{{#nav.link-to 'courses'}}Courses{{/nav.link-to}}{{/nav.item}}
+    {{#nav.item}}{{#nav.link-to 'users'}}Users{{/nav.link-to}}{{/nav.item}}
+    <!-- TODO When on the new round page, both Rounds and New Round are "active". Should remedy -->
+    {{#nav.item}}{{#nav.link-to 'rounds'}}Rounds{{/nav.link-to}}{{/nav.item}}
+  {{/bs-nav}}
 
   {{outlet}}
 </div>
