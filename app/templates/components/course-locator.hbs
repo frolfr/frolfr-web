@@ -1,21 +1,10 @@
-<button {{action 'locateNearest'}} class='btn btn-primary' disabled={{isSearching}}>
+<button {{action 'locateNearest'}} class='btn btn-default btn-block' disabled={{isSearching}}>
   {{#if isSearching}}
     Searching...
   {{else}}
-    Find location
+    Find Location
   {{/if}}
 </button>
 <br>
 
-{{#if hasBlock}}
-  {{yield}}
-{{else}}
-  {{#if courses}}
-    Nearby courses
-    <ul>
-      {{#each courses as |course|}}
-        <li>{{course.name}}</li>
-      {{/each}}
-    </ul>
-  {{/if}}
-{{/if}}
+{{yield}}

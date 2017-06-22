@@ -1,4 +1,7 @@
-Search {{input value=filter key-up=(action 'autoComplete' filter)}}
+<div class='form-group'>
+  <label for='search'>{{if searchText searchText 'Search'}}</label>
+  {{input value=filter key-up=(action 'autoComplete' filter) class='form-control'}}
+</div>
 
 {{#if hasBlock}}
   {{yield}}

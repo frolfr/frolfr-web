@@ -7,11 +7,11 @@
   </ul>
 {{/if}}
 
-Search for players
 {{#filterable-resource
   filter=userFilter
   filteredList=searchedUsers
-  modelName='user'}}
+  modelName='user'
+  searchText='Search for Players'}}
   <ul>
     {{#each availableUsers as |user|}}
       <li><a {{action 'addUser' user}}>{{user.name}}</a></li>
@@ -19,15 +19,13 @@ Search for players
   </ul>
 {{/filterable-resource}}
 
-<hr>
-
 {{#if model.course}}
   Selected course: {{model.course.name}} | <a {{action 'removeCourse'}}>Remove</a>
 {{else}}
-  Search for courses
   {{#filterable-resource
     filteredList=searchedCourses
-    modelName='course'}}
+    modelName='course'
+    searchText='Search for Courses'}}
     <ul>
       {{#each searchedCourses as |course|}}
         <li><a {{action 'addCourse' course}}>{{course.name}}</a></li>
@@ -47,4 +45,4 @@ Search for players
 
 <hr>
 
-<button class='btn btn-primary' {{action 'save'}}>Start</button>
+<button class='btn btn-primary btn-block' {{action 'save'}}>Start Round</button>
