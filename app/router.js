@@ -11,7 +11,9 @@ Router.map(function() {
   this.route('rounds', function() {
     this.route('new');
   });
-  this.route('users');
+  this.route('users', function() {
+    this.route('new');
+  });
 
   this.route('course', { path: 'courses/:id' });
   this.route('round', { path: 'rounds/:id' }, function() {

@@ -2,11 +2,12 @@ import DS from 'ember-data';
 import Ember from 'ember';
 
 export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  middleName: DS.attr('string'),
-  lastName: DS.attr('string'),
+  avatarUrl: DS.attr('string'),
   email: DS.attr('string'),
-  avatarUrl: DS.attr('number'),
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  middleName: DS.attr('string'),
+  password: DS.attr('string'),
 
   scorecards: DS.hasMany('scorecards'),
 

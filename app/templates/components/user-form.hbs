@@ -1,0 +1,8 @@
+{{#bs-form formLayout=formLayout model=this onSubmit=(action 'save') as |form|}}
+  {{form.element controlType='text' label='First Name' placeholder='First Name' property='model.firstName' required=true}}
+  {{form.element controlType='text' label='Middle Name' placeholder='Middle Name' property='model.middleName' required=true}}
+  {{form.element controlType='text' label='Last Name' placeholder='Last Name' property='model.lastName' required=true}}
+  {{form.element controlType='email' label='Email' placeholder='Email' property='model.email' required=true}}
+  {{form.element controlType='password' label='Password' placeholder='Password' property='model.password' required=true}}
+  {{bs-button defaultText='Create' type='primary' block=true buttonType='submit'}}
+{{/bs-form}}
