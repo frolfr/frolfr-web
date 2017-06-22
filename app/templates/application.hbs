@@ -1,10 +1,18 @@
-<div class='container'>
-  {{#bs-nav type='tabs' as |nav|}}
-    {{#nav.item}}{{#nav.link-to 'rounds.new'}}+ New Round{{/nav.link-to}}{{/nav.item}}
-    {{#nav.item}}{{#nav.link-to 'courses'}}Courses{{/nav.link-to}}{{/nav.item}}
-    {{#nav.item}}{{#nav.link-to 'users'}}Users{{/nav.link-to}}{{/nav.item}}
-    {{#nav.item}}{{#nav.link-to 'rounds.index'}}Rounds{{/nav.link-to}}{{/nav.item}}
-  {{/bs-nav}}
+{{#bs-navbar type='inverse' as |navbar|}}
+  <div class='navbar-header'>
+    {{navbar.toggle}}
+    {{#link-to 'rounds.index' class='navbar-brand'}}Frolfr 2.0{{/link-to}}
+  </div>
+  {{#navbar.content}}
+    {{#navbar.nav as |nav|}}
+      {{#nav.item}}{{#nav.link-to 'rounds.new'}}+ New Round{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to 'courses'}}Courses{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to 'users'}}Users{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to 'rounds.index'}}Rounds{{/nav.link-to}}{{/nav.item}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}
 
+<div class='container'>
   {{outlet}}
 </div>
