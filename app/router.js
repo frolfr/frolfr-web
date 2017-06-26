@@ -15,7 +15,9 @@ Router.map(function() {
     this.route('new');
   });
 
-  this.route('course', { path: 'courses/:id' });
+  this.route('course', { path: 'courses/:id' }, function() {
+    this.route('scorecards');
+  });
   this.route('round', { path: 'rounds/:id' }, function() {
     this.route('turns', { path: 'holes/:number' });
   });

@@ -1,5 +1,3 @@
 <h1 class='text-center'>{{model.name}} - {{model.city}}, {{model.state}}</h1>
 
-{{#each model.rounds as |round|}}
-  {{round-resource round=round}}
-{{/each}}
+{{outlet}}
