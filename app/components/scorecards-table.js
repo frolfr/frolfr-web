@@ -7,9 +7,9 @@ export default Ember.Component.extend({
   round: null,
   scorecards: null,
 
-  holeNumbers: Ember.computed('course.holeCount', function() {
-    const holeCount = this.get('course.holeCount');
+  holeNumbers: Ember.computed('course.holesCount', function() {
+    const holesCount = this.get('course.holesCount');
 
-    return Array.from(new Array(holeCount), (val,index) => index + 1);
+    return Array.from(new Array(holesCount), (val,index) => index + 1);
   })
 });
