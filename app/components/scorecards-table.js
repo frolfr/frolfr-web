@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: [ 'table', 'table-striped' ],
-  tagName: 'table',
+  classNames: [ 'table-responsive' ],
   course: null,
   round: null,
   scorecards: null,

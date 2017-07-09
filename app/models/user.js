@@ -11,7 +11,19 @@ export default DS.Model.extend({
 
   scorecards: DS.hasMany('scorecards'),
 
-  name: Ember.computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+  name: Ember.computed('_fullNames', function() {
+    return this.get('_fullNames').join(' ');
+  }),
+
+  initials: Ember.computed('_fullNames', function() {
+    return this.get('_fullNames').map(function(name) { return name[0]; }).join('');
+  }),
+
+  _fullNames: Ember.computed('firstName', 'middleName', 'lastName', function() {
+    return [
+      this.get('firstName'),
+      this.get('middleName'),
+      this.get('lastName')
+    ].filter(Boolean);
   })
 });

@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ApplicationRoute from 'frolfr-web/routes/application';
 
-export default Ember.Route.extend({
+export default ApplicationRoute.extend({
   model({ id }) {
     return this.store.findRecord('user', id);
   },

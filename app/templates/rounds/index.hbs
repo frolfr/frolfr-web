@@ -1,7 +1,17 @@
 <h1 class='text-center'>Rounds</h1>
 
-<ul>
-  {{#each model as |round|}}
-    {{round-resource round=round}}
-  {{/each}}
-</ul>
+{{#each model as |round|}}
+  {{round-resource round=round}}
+{{/each}}
+
+{{#each-in model.meta.pagination as |key value|}}
+  {{link-to key 'rounds' (query-params page=value.number) classNames='btn btn-primary'}}
+{{/each-in}}
+
+<!-- {{#each count as |number|}}
+  {{#if (eq number model.meta.pagination.self.number)}}
+    {{ number }}
+  {{else}}
+    {{link-to number 'rounds' (query-params page=number)}}
+  {{/if}}
+{{/each}} -->

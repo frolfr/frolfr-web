@@ -1,3 +1,5 @@
 {{#each model as |round|}}
-  {{round-resource round=round}}
+  {{round-resource
+    ignoreCourseName=true
+    round=round}}
 {{/each}}

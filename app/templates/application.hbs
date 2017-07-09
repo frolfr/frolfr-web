@@ -1,7 +1,7 @@
 {{#bs-navbar type='inverse' as |navbar|}}
   <div class='navbar-header'>
     {{navbar.toggle}}
-    {{#link-to 'rounds.index' class='navbar-brand'}}Frolfr 2.0{{/link-to}}
+    {{#link-to 'rounds.index' class='navbar-brand'}}Frolfr{{/link-to}}
   </div>
   {{#navbar.content}}
     {{#navbar.nav as |nav|}}
@@ -14,5 +14,5 @@
 {{/bs-navbar}}
 
 <div class='container'>
-  {{outlet}}
+  {{liquid-outlet}}
 </div>

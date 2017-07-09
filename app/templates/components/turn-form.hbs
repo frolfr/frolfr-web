@@ -1,16 +1,31 @@
-<a {{action edit scorecard.id}}>
-  {{scorecard.user.name}} | {{if turn.strokes turn.strokes '-'}}
-</a>
+<div class='panel-heading' {{action edit turn.id}}>
+  <div class='panel-title row'>
+    <div class='col-xs-3'>
+      <div>
+        {{#if turn.scorecard.user.avatarUrl}}
+          <img class='media-object' height='35' width='35' src={{turn.scorecard.user.avatarUrl}}>
+        {{else}}
+          <img class='media-object' height='35' width='35' src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png'>
+        {{/if}}
+      </div>
+    </div>
 
-<br>
+    <div class='col-xs-6 text-center'>
+      {{turn.scorecard.user.name}}
+    </div>
 
-{{#if isEditingScorecard}}
-  Edit
-  <ul>
+    <div class='col-xs-3 pull-right {{status}} par-status'>
+      {{if turn.strokes turn.strokes '-'}}
+    </div>
+  </div>
+</div>
+
+{{#liquid-if isEditingTurn}}
+  <div class='panel-body row'>
     {{#each strokesOptions as |strokes|}}
-      <li>
-        <a {{action 'save' strokes}}>{{if strokes strokes 'Skip'}}</a>
-      </li>
+      <div class='col-xs-4'>
+        <a {{action 'save' strokes}} class='btn {{if (eq strokes turn.strokes) 'btn-disabled' 'btn-primary'}} btn-strokes btn-block' disabled={{if (eq strokes turn.strokes) 'disabled'}}>{{if strokes strokes 'Skip'}}</a>
+      </div>
     {{/each}}
-  </ul>
-{{/if}}
+  </div>
+{{/liquid-if}}

@@ -1,12 +1,42 @@
-<li>
-  {{#link-to 'round' round}}
-    {{round.createdAt}} {{round.id}}
-    <ul>
+{{#link-to 'round' round tagName='div'}}
+  {{#if ignoreCourseName}}
+    <header class='text-center'>
+      <h4>
+        {{moment-format round.createdAt 'dddd, MMM Do YYYY'}}
+      </h4>
+    </header>
+  {{else}}
+    <header class='text-center'>
+      <h4>
+        {{round.course.name}}
+      </h4>
+      <h6>
+        {{moment-format round.createdAt 'dddd, MMM Do YYYY'}}
+      </h6>
+    </header>
+  {{/if}}
+
+  <div class='row'>
+    <div class='col-xs-10'>
       {{#each round.scorecards as |scorecard|}}
-        <li>
-          {{scorecard.user.firstName}} {{scorecard.user.lastName}}
-        </li>
+        <div class='media'>
+          <div class='media-left'>
+            {{#if scorecard.user.avatarUrl}}
+              <img class='media-object' height='35' width='35' src={{scorecard.user.avatarUrl}}>
+            {{else}}
+              <img class='media-object' height='35' width='35' src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png'>
+            {{/if}}
+          </div>
+          <div class='media-body'>
+            <span class='media-heading'>{{scorecard.user.firstName}} {{scorecard.user.lastName}}</span><br>
+            {{scorecard.total}} ({{scorecard.score}})
+          </div>
+        </div>
       {{/each}}
-    </ul>
-  {{/link-to}}
-</li>
+    </div>
+
+    <div class='col-xs-2'>
+      <span class='glyphicon glyphicon-chevron-right'></span>
+    </div>
+  </div>
+{{/link-to}}

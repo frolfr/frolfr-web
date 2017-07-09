@@ -1,18 +1,34 @@
-<thead>
-  <tr>
-    <th></th>
-    {{#each scorecards as |scorecard|}}
-      <th>{{scorecard.user.name}}</th>
-    {{/each}}
-  </tr>
-</thead>
-<tbody>
-  {{#each holeNumbers as |holeNumber|}}
-    {{#link-to 'round.turns' round holeNumber tagName='tr'}}
-      <th>{{holeNumber}}</th>
+<table class='table table-striped scorecards-table'>
+  <thead>
+    <tr>
+      <th></th>
       {{#each scorecards as |scorecard|}}
-        {{scorecard-turn holeNumber=holeNumber scorecard=scorecard tagName='td'}}
+        <th>{{scorecard.user.initials}}</th>
       {{/each}}
-    {{/link-to}}
-  {{/each}}
-</tbody>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each holeNumbers as |holeNumber|}}
+      {{#link-to 'round.turns' round holeNumber tagName='tr'}}
+        <th>{{holeNumber}}</th>
+        {{#each scorecards as |scorecard|}}
+          {{scorecard-turn holeNumber=holeNumber scorecard=scorecard tagName='td'}}
+        {{/each}}
+      {{/link-to}}
+    {{/each}}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>+ / -</th>
+      {{#each scorecards as |scorecard|}}
+        <th>{{scorecard.score}}</th>
+      {{/each}}
+    </tr>
+    <tr>
+      <th>T</th>
+      {{#each scorecards as |scorecard|}}
+        <th>{{scorecard.total}}</th>
+      {{/each}}
+    </tr>
+  </tfoot>
+</table>

@@ -1,3 +1,12 @@
+<header class='text-center'>
+  <h3>
+    {{model.course.name}}
+  </h3>
+  <h4>
+    {{moment-format model.createdAt 'dddd, MMM Do YYYY'}}
+  </h4>
+</header>
+
 {{scorecards-table
   course=model.course
   scorecards=model.scorecards
