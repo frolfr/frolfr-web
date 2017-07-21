@@ -8,7 +8,7 @@ export default ApplicationRoute.extend({
 
   actions: {
     goToRound(round) {
-      this.transitionTo('round.turns', round, 1);
+      this.transitionTo('round.turns', round.id, 1);
     }
   }
 });
