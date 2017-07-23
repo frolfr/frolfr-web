@@ -3,7 +3,15 @@
     <h2>Frolfr</h2>
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
-<div id="footer" style="position: fixed; left: 0; bottom: 0; width: 100%">
+
+{{#paper-content}}
+  {{liquid-outlet}}
+  <div class="nav-fab">
+    {{#paper-button raised=true fab=true primary=true}}{{paper-icon "play-arrow" size="36"}}{{/paper-button}}
+  </div>
+{{/paper-content}}
+
+<div class="nav-footer">
   {{#paper-toolbar}}
     {{#paper-toolbar-tools}}
       {{#paper-button}}{{paper-link 'Courses' 'courses'}}{{/paper-button}}
@@ -12,9 +20,3 @@
     {{/paper-toolbar-tools}}
   {{/paper-toolbar}}
 </div>
-{{#paper-content}}
-  {{liquid-outlet}}
-  <div style="right: 10px; bottom: 70px; position: fixed;">
-    {{#paper-button raised=true fab=true primary=true}}{{paper-icon "play-arrow" size="36"}}{{/paper-button}}
-  </div>
-{{/paper-content}}
