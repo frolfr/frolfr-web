@@ -1,7 +1,4 @@
-<div class='form-group'>
-  <label for='search'>{{if searchText searchText 'Search'}}</label>
-  {{input value=filter key-up=(action 'autoComplete' filter) class='form-control'}}
-</div>
+{{paper-input label="Search" value=filter onChange=(action 'autoComplete' filter) icon="search"}}
 
 {{#if hasBlock}}
   {{yield}}

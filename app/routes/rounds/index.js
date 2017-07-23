@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import ApplicationRoute from 'frolfr-web/routes/application';
 
 export default ApplicationRoute.extend({
@@ -18,9 +17,5 @@ export default ApplicationRoute.extend({
     size: {
       refreshModel: true
     }
-  },
-
-  afterModel() {
-    Ember.$('html, body').animate({ scrollTop: 0 });
   }
 });
