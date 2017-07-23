@@ -1,18 +1,20 @@
-{{#bs-navbar type='inverse' as |navbar|}}
-  <div class='navbar-header'>
-    {{navbar.toggle}}
-    {{#link-to 'rounds.index' class='navbar-brand'}}Frolfr{{/link-to}}
-  </div>
-  {{#navbar.content}}
-    {{#navbar.nav as |nav|}}
-      {{#nav.item}}{{#nav.link-to 'rounds.new'}}+ New Round{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'courses'}}Courses{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'users'}}Users{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'rounds.index'}}Rounds{{/nav.link-to}}{{/nav.item}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
-{{/bs-navbar}}
-
-<div class='container'>
-  {{liquid-outlet}}
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+    <h2>Frolfr</h2>
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+<div id="footer" style="position: fixed; left: 0; bottom: 0; width: 100%">
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      {{#paper-button}}{{paper-link 'Courses' 'courses'}}{{/paper-button}}
+      {{#paper-button}}{{paper-link 'Users' 'users'}}{{/paper-button}}
+      {{#paper-button}}{{paper-link 'Rounds' 'rounds.index'}}{{/paper-button}}
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
 </div>
+{{#paper-content}}
+  {{liquid-outlet}}
+  <div style="right: 10px; bottom: 70px; position: fixed;">
+    {{#paper-button raised=true fab=true primary=true}}{{paper-icon "play-arrow" size="36"}}{{/paper-button}}
+  </div>
+{{/paper-content}}
