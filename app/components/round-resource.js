@@ -1,6 +1,20 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  classNames: [ 'col-xs-12', 'well', 'round-resource' ],
+const { Component, computed } = Ember;
+
+export default Component.extend({
+  classNames: [ 'round-resource' ],
   round: null,
+
+  roundIcon: computed('round.users', function() {
+    if(this.get('round.users.length') > 1) {
+      return 'people';
+    } else {
+      return 'person';
+    }
+  }),
+
+  score: computed('users.user.id', 'scorecards.user.id', function() {
+    return this.get('scorecards').findBy('user.id', 4);
+  })
 });

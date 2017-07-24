@@ -1,12 +1,16 @@
-<h2>Rounds</h2>
+{{#paper-list}}
+  {{#each model as |round|}}
+    {{round-resource round=round}}
+  {{/each}}
+{{/paper-list}}
 
-{{#each model as |round|}}
+{{!-- {{#each model as |round|}}
   {{round-resource round=round}}
 {{/each}}
 
 {{#each-in model.meta.pagination as |key value|}}
   {{link-to key 'rounds' (query-params page=value.number) classNames='btn btn-primary'}}
-{{/each-in}}
+{{/each-in}} --}}
 
 <!-- {{#each count as |number|}}
   {{#if (eq number model.meta.pagination.self.number)}}
