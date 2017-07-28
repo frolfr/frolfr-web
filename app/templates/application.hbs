@@ -1,13 +1,13 @@
-{{#paper-toolbar}}
+{{#paper-toolbar class="primary-dark"}}
   {{#paper-toolbar-tools}}
     <h2>Frolfr</h2>
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
 {{#paper-content}}
-  {{liquid-outlet}}
+  {{liquid-outlet class="md-padding"}}
   <div class="nav-fab">
-    {{#paper-button raised=true fab=true primary=true}}{{paper-icon "play-arrow" size="36"}}{{/paper-button}}
+    {{#paper-button fab=true classNames="accent"}}{{paper-icon "play-arrow" size="36"}}{{/paper-button}}
   </div>
 {{/paper-content}}
 
