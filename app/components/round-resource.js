@@ -16,5 +16,9 @@ export default Component.extend({
 
   score: computed('users.user.id', 'scorecards.user.id', function() {
     return this.get('scorecards').findBy('user.id', 4);
-  })
+  }),
+
+  click() {
+    this.attrs.goToRound(this.get('round'));
+  }
 });
