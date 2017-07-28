@@ -1,4 +1,22 @@
 {{#link-to 'round' round tagName='div'}}
+  {{#paper-card as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline}}{{round.course.name}}{{/text.headline}}
+        {{#text.subhead}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.subhead}}
+      {{/title.text}}
+      {{#title.media size="md"}}
+        <div class="score par-status belowPar">-4</div>
+      {{/title.media}}
+    {{/card.title}}
+    {{#card.content}}
+      {{#each round.users as |user|}}
+        <img class="avatar" src={{user.avatarUrl}} alt={{user.fullName}} title={{user.fullName}}>
+      {{/each}}
+    {{/card.content}}
+  {{/paper-card}}
+{{/link-to}}
+{{!-- {{#link-to 'round' round tagName='div'}}
   {{#paper-item class="md-3-line" as |controls|}}
     {{paper-icon roundIcon class="md-avatar-icon"}}
     <div class="md-list-item-text">
@@ -10,4 +28,4 @@
       <h2>{{round.score}}</h2>
     </div>
   {{/paper-item}}
-{{/link-to}}
+{{/link-to}} --}}

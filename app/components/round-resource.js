@@ -14,8 +14,12 @@ export default Component.extend({
     }
   }),
 
-  score: computed('users.user.id', 'scorecards.user.id', function() {
-    return this.get('scorecards').findBy('user.id', 4);
+  score: computed('round.scorecards.[]', function() {
+    return this.get('round.scorecards.firstObject.score');//.findBy('user.id', 4);
+  }),
+
+  total: computed('round.scorecards.[]', function() {
+    return this.get('round.scorecards.firstObject.total');
   }),
 
   click() {
