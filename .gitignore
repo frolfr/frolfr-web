@@ -17,5 +17,5 @@ npm-debug.log*
 yarn-error.log
 testem.log
 
-# editors
+# editor specific files
 jsconfig.json
