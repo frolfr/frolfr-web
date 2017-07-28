@@ -1,15 +1,9 @@
-$primary: 'blue-grey';
-$primaryLight: #c1d5e0;
-$primaryDark: #62757f;
-$accent: 'red';
-$accentLight: #ff7961;
-$accentDark: #ba000d;
-$primaryText: #000000;
-$accentText: #fafafa;
-
+@import 'variables';
 @import 'ember-paper';
 
 @import 'nav';
+@import 'rounds';
+@import 'par-statuses';
 
 .primary {
   background-color: $primary;
