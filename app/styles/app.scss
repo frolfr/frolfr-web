@@ -1,8 +1,42 @@
+$primary: 'blue-grey';
+$primaryLight: #c1d5e0;
+$primaryDark: #62757f;
+$accent: 'red';
+$accentLight: #ff7961;
+$accentDark: #ba000d;
+$primaryText: #000000;
+$accentText: #fafafa;
+
 @import 'ember-paper';
 
 @import 'nav';
-// @import "ember-bootstrap/bootstrap";
 
-// @import "par-statuses";
-// @import "scorecards-table";
-// @import "turns-form";
+.primary {
+  background-color: $primary;
+  color: $primaryText;
+}
+
+.primary-light {
+  background-color: $primaryLight;
+  color: $primaryText;
+}
+
+md-toolbar.md-default-theme.primary-dark {
+  background-color: $primaryDark;
+  color: $accentText;
+}
+
+.accent {
+  background-color: $accent;
+  color: $accentText;
+}
+
+.accent-light {
+  background-color: $accentLight;
+  color: $accentText;
+}
+
+.accent-dark {
+  background-color: $accentDark;
+  color: $accentText;
+}
