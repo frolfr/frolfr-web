@@ -1,42 +1,31 @@
 {{#link-to 'round' round tagName='div'}}
-  {{#if ignoreCourseName}}
-    <header class='text-center'>
-      <h4>
-        {{moment-format round.createdAt 'dddd, MMM Do YYYY'}}
-      </h4>
-    </header>
-  {{else}}
-    <header class='text-center'>
-      <h4>
-        {{round.course.name}}
-      </h4>
-      <h6>
-        {{moment-format round.createdAt 'dddd, MMM Do YYYY'}}
-      </h6>
-    </header>
-  {{/if}}
-
-  <div class='row'>
-    <div class='col-xs-10'>
-      {{#each round.scorecards as |scorecard|}}
-        <div class='media'>
-          <div class='media-left'>
-            {{#if scorecard.user.avatarUrl}}
-              <img class='media-object' height='35' width='35' src={{scorecard.user.avatarUrl}}>
-            {{else}}
-              <img class='media-object' height='35' width='35' src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png'>
-            {{/if}}
-          </div>
-          <div class='media-body'>
-            <span class='media-heading'>{{scorecard.user.firstName}} {{scorecard.user.lastName}}</span><br>
-            {{scorecard.total}} ({{scorecard.score}})
-          </div>
-        </div>
+  {{#paper-card as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline}}{{round.course.name}}{{/text.headline}}
+        {{#text.subhead}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.subhead}}
+      {{/title.text}}
+      {{#title.media size="md"}}
+        <div class="score par-status belowPar">-4</div>
+      {{/title.media}}
+    {{/card.title}}
+    {{#card.content}}
+      {{#each round.users as |user|}}
+        <img class="avatar" src={{user.avatarUrl}} alt={{user.fullName}} title={{user.fullName}}>
       {{/each}}
-    </div>
-
-    <div class='col-xs-2'>
-      <span class='glyphicon glyphicon-chevron-right'></span>
-    </div>
-  </div>
+    {{/card.content}}
+  {{/paper-card}}
 {{/link-to}}
+{{!-- {{#link-to 'round' round tagName='div'}}
+  {{#paper-item class="md-3-line" as |controls|}}
+    {{paper-icon roundIcon class="md-avatar-icon"}}
+    <div class="md-list-item-text">
+      <h3>{{round.course.name}}</h3>
+      <h4>{{moment-format round.createdAt 'MM/DD/YYYY'}}</h4>
+      <p>With 3 others</p>
+    </div>
+    <div style="text-align: right;">
+      <h2>{{round.score}}</h2>
+    </div>
+  {{/paper-item}}
+{{/link-to}} --}}
