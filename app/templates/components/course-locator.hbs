@@ -1,10 +1,10 @@
-<button {{action 'locateNearest'}} class='btn btn-default btn-block' disabled={{isSearching}}>
+{{#paper-button onClick=(action 'locateNearest') raised=true class='btn-block' disabled=isSearching}}
   {{#if isSearching}}
-    Searching...
+    Searching {{paper-icon 'rotate-right' spin=true}}
   {{else}}
     Find Location
   {{/if}}
-</button>
+{{/paper-button}}
 <br>
 
 {{yield}}

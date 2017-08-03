@@ -1,10 +1,11 @@
 {{#if model.users}}
-  Selected users:
-  <ul>
-    {{#each model.users as |user|}}
-      <li>{{user.name}} | <a {{action 'removeUser' user}}>Remove</a></li>
-    {{/each}}
-  </ul>
+  Selected users
+  {{#paper-chips
+    content=model.users
+    readOnly=readOnly
+    removeItem=(action 'removeUser') as |user|}}
+    {{user.name}}
+  {{/paper-chips}}
 {{/if}}
 
 {{#filterable-resource
@@ -45,4 +46,4 @@
 
 <hr>
 
-<button class='btn btn-primary btn-block' {{action 'save'}}>Start Round</button>
+{{#paper-button onClick=(action 'save') raised=true primary=true class='btn-block'}}Start Round{{/paper-button}}
