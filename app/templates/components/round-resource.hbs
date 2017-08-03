@@ -11,7 +11,7 @@
     {{/card.title}}
     {{#card.content}}
       {{#each round.users as |user|}}
-        <img class='avatar' src={{user.avatarUrl}} alt={{user.fullName}} title={{user.fullName}}>
+        <img class='avatar' src={{user.avatarSrc}} alt={{user.fullName}} title={{user.fullName}}>
       {{/each}}
     {{/card.content}}
   {{/paper-card}}
