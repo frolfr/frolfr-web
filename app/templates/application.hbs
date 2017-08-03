@@ -13,18 +13,19 @@
   </div>
 {{/paper-content}}
 
-<div class='nav-footer'>
-  {{#paper-toolbar}}
-    {{#paper-toolbar-tools}}
-      {{#link-to 'courses'}}
-        {{#paper-button}}Courses{{/paper-button}}
-      {{/link-to}}
-      {{#link-to 'users'}}
-        {{#paper-button}}Users{{/paper-button}}
-      {{/link-to}}
-      {{#link-to 'rounds.index'}}
-        {{#paper-button}}Rounds{{/paper-button}}
-      {{/link-to}}
-    {{/paper-toolbar-tools}}
-  {{/paper-toolbar}}
-</div>
+<nav class="nav-footer">
+  <div class="layout-row flex layout-align-center-center">
+    {{#link-to 'rounds.index' tagName='div' classNames="footer-link layout-column flex layout-align-center-center"}}
+      {{paper-icon "golf-course" size="24"}}
+      <span>Rounds</span>
+    {{/link-to}}
+    {{#link-to 'friends.index' tagName='div' classNames="footer-link layout-column flex layout-align-center-center"}}
+      {{paper-icon "people" size="24"}}
+      <span>Friends</span>
+    {{/link-to}}
+    {{#link-to 'users.index' tagName='div' classNames="footer-link layout-column flex layout-align-center-center"}}
+      {{paper-icon "person-outline" size="24"}}
+      <span>Profile</span>
+    {{/link-to}}
+  </div>
+</nav>
