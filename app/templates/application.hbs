@@ -4,7 +4,7 @@
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
-{{#paper-content}}
+{{#paper-content class='padding-bottom--xl'}}
   {{liquid-outlet class='md-padding'}}
   <div class='nav-fab'>
     {{#paper-button fab=true classNames='accent'}}{{paper-icon 'play-arrow' size='36'}}{{/paper-button}}
@@ -14,9 +14,15 @@
 <div class='nav-footer'>
   {{#paper-toolbar}}
     {{#paper-toolbar-tools}}
-      {{#paper-button}}{{paper-link 'Courses' 'courses'}}{{/paper-button}}
-      {{#paper-button}}{{paper-link 'Users' 'users'}}{{/paper-button}}
-      {{#paper-button}}{{paper-link 'Rounds' 'rounds.index'}}{{/paper-button}}
+      {{#link-to 'courses'}}
+        {{#paper-button}}Courses{{/paper-button}}
+      {{/link-to}}
+      {{#link-to 'users'}}
+        {{#paper-button}}Users{{/paper-button}}
+      {{/link-to}}
+      {{#link-to 'rounds.index'}}
+        {{#paper-button}}Rounds{{/paper-button}}
+      {{/link-to}}
     {{/paper-toolbar-tools}}
   {{/paper-toolbar}}
 </div>
