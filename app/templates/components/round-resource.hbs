@@ -5,27 +5,14 @@
         {{#text.headline}}{{round.course.name}}{{/text.headline}}
         {{#text.subhead}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.subhead}}
       {{/title.text}}
-      {{#title.media size="md"}}
-        <div class="score par-status belowPar">-4</div>
+      {{#title.media size='md'}}
+        <div class='score par-status belowPar'>-4</div>
       {{/title.media}}
     {{/card.title}}
     {{#card.content}}
       {{#each round.users as |user|}}
-        <img class="avatar" src={{user.avatarUrl}} alt={{user.fullName}} title={{user.fullName}}>
+        <img class='avatar' src={{user.avatarUrl}} alt={{user.fullName}} title={{user.fullName}}>
       {{/each}}
     {{/card.content}}
   {{/paper-card}}
 {{/link-to}}
-{{!-- {{#link-to 'round' round tagName='div'}}
-  {{#paper-item class="md-3-line" as |controls|}}
-    {{paper-icon roundIcon class="md-avatar-icon"}}
-    <div class="md-list-item-text">
-      <h3>{{round.course.name}}</h3>
-      <h4>{{moment-format round.createdAt 'MM/DD/YYYY'}}</h4>
-      <p>With 3 others</p>
-    </div>
-    <div style="text-align: right;">
-      <h2>{{round.score}}</h2>
-    </div>
-  {{/paper-item}}
-{{/link-to}} --}}

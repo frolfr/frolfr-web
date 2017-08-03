@@ -4,15 +4,15 @@
   searchText=(readonly filter)
   onSearchTextChange=(action (mut filter))
   search=(action 'autoComplete')
-  searchField="name"
+  searchField='name'
   selected=selectedItem
-  labelPath="name"
-  placeholder="Search"
+  labelPath='name'
+  placeholder='Search'
   onSelectionChange=(action (mut selectedItem))
   as |item autocomplete|
 }}
   {{paper-autocomplete-highlight
     label=item.name
     searchText=autocomplete.searchText
-    flags="i"}}
+    flags='i'}}
 {{/paper-autocomplete}}

@@ -15,7 +15,7 @@ export default Component.extend({
   }),
 
   score: computed('round.scorecards.[]', function() {
-    return this.get('round.scorecards.firstObject.score');//.findBy('user.id', 4);
+    return this.get('round.scorecards.firstObject.score');
   }),
 
   total: computed('round.scorecards.[]', function() {

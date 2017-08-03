@@ -1,5 +1,3 @@
-{{!-- {{#paper-list}} --}}
-  {{#each model as |round|}}
-    {{round-resource round=round goToRound=(action 'goToRound')}}
-  {{/each}}
-{{!-- {{/paper-list}} --}}
+{{#each model as |round|}}
+  {{round-resource round=round goToRound=(action 'goToRound')}}
+{{/each}}
