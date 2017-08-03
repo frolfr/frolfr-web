@@ -1,3 +1,20 @@
+{{#paper-tabs classNames='primary-dark' borderBottom=true as |tabs|}}
+  {{#tabs.tab}}
+    My Rounds
+  {{/tabs.tab}}
+  {{#tabs.tab}}
+    Friends Rounds
+  {{/tabs.tab}}
+{{/paper-tabs}}
+
 {{#each model as |round|}}
   {{round-resource round=round goToRound=(action 'goToRound')}}
 {{/each}}
+
+{{#each-in model.meta.pagination as |key value|}}
+  {{#link-to 'rounds' (query-params page=value.number) classNames='btn btn-primary'}}
+    {{#paper-button}}
+      {{key}}
+    {{/paper-button}}
+  {{/link-to}}
+{{/each-in}}
