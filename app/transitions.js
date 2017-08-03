@@ -1,21 +1,28 @@
 export default function(){
   this.transition(
-    this.fromRoute('courses'),
+    this.fromRoute('rounds'),
+    this.toRoute('friends'),
+    this.use('toLeft'),
+    this.reverse('toRight')
+  );
+
+  this.transition(
+    this.fromRoute('rounds'),
     this.toRoute('users'),
     this.use('toLeft'),
     this.reverse('toRight')
   );
 
   this.transition(
-    this.fromRoute('courses'),
+    this.fromRoute('friends'),
     this.toRoute('rounds'),
     this.use('toLeft'),
     this.reverse('toRight')
   );
 
   this.transition(
-    this.fromRoute('users'),
-    this.toRoute('rounds'),
+    this.fromRoute('friends'),
+    this.toRoute('users'),
     this.use('toLeft'),
     this.reverse('toRight')
   );
