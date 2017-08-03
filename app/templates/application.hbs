@@ -7,7 +7,9 @@
 {{#paper-content class='padding-bottom--xl'}}
   {{liquid-outlet class='md-padding'}}
   <div class='nav-fab'>
-    {{#paper-button fab=true classNames='accent'}}{{paper-icon 'play-arrow' size='36'}}{{/paper-button}}
+    {{#link-to 'rounds.new'}}
+      {{#paper-button fab=true classNames='accent'}}{{paper-icon 'add' size='36'}}{{/paper-button}}
+    {{/link-to}}
   </div>
 {{/paper-content}}
 
