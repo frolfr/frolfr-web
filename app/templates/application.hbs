@@ -14,16 +14,7 @@
 {{/paper-content}}
 
 {{#bottom-nav}}
-  {{#link-to 'rounds.index' tagName='div' classNames="footer-link layout-column flex layout-align-center-center"}}
-    {{paper-icon "golf-course" size="24"}}
-    <span>Rounds</span>
-  {{/link-to}}
-  {{#link-to 'friends.index' tagName='div' classNames="footer-link layout-column flex layout-align-center-center"}}
-    {{paper-icon "people" size="24"}}
-    <span>Friends</span>
-  {{/link-to}}
-  {{#link-to 'users.index' tagName='div' classNames="footer-link layout-column flex layout-align-center-center"}}
-    {{paper-icon "person-outline" size="24"}}
-    <span>Profile</span>
-  {{/link-to}}
+  {{bottom-nav-item targetRoute='rounds.index' icon="golf-course" text="Rounds"}}
+  {{bottom-nav-item targetRoute='friends.index' icon="people" text="Friends"}}
+  {{bottom-nav-item targetRoute='users.index' icon="person-outline" text="Profile"}}
 {{/bottom-nav}}
