@@ -11,17 +11,23 @@
 
   .footer-link {
     color: $accentTextDark;
+    transition: 0.1s;
 
     .paper-icon {
       color: $accentTextDark;
+      transition: 0.1s;
     }
   }
 
   .footer-link.active {
     color: #fff;
+    font-size: 18px;
+    transition: 0.1s;
 
     .paper-icon {
       color: #fff;
+      font-size: 32px;
+      transition: 0.1s;
     }
   }
 }
