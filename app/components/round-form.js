@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['round-form'],
   didSave: null,
   locatedCourses: null,
   model: null,
