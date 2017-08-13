@@ -1,7 +1,14 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, computed, inject } = Ember;
+const { service } = inject;
+
+export default Component.extend({
   classNames: ['round-form'],
+  store: service(),
+
+  showFriendsSheet: false,
+  showCoursesSheet: false,
   didSave: null,
   locatedCourses: null,
   model: null,
@@ -9,7 +16,10 @@ export default Ember.Component.extend({
   searchedUsers: null,
   userFilter: null,
 
-  availableUsers: Ember.computed('model.users.[]', 'searchedUsers.[]', function() {
+  courses: null,
+  nearByCourses: null,
+
+  availableUsers: computed('model.users.[]', 'searchedUsers.[]', function() {
     const searchedUsers = this.get('searchedUsers');
     if (!searchedUsers) return;
 
@@ -20,7 +30,24 @@ export default Ember.Component.extend({
     return searchedUsers;
   }),
 
+  availableCourses: computed('courseFilter', function() {
+    if (this.get('courseFilter') === 'all') {
+      return this.get('courses');
+    } else {
+      return this.get('nearByCourses');
+    }
+  }),
+
+  init() {
+    this._super('arguments');
+    const store = this.get('store');
+
+    store.findAll('course').then((courses) => this.set('courses', courses));
+    this.set('nearByCourses', []); //empty for now
+  },
+
   willDestroyElement() {
+    this._super(...arguments);
     let model = this.get('model');
 
     if (model.get('isNew')) { return model.destroyRecord(); }
@@ -59,6 +86,20 @@ export default Ember.Component.extend({
     save() {
       this.get('model').save()
       .then((round) => this.sendAction('didSave', round));
+    },
+
+    closeFriendsDialog(event) {
+      if(event === 'save') {
+        // do ssomething
+      }
+      this.set('showFriendsSheet', false);
+    },
+
+    closeCoursesDialog(args) {
+      if(args.action === 'save') {
+        this.set('model.course', args.value);
+      }
+      this.set('showCoursesSheet', false);
     }
   }
 });

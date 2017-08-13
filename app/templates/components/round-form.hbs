@@ -1,10 +1,72 @@
-<div class="form-input">
-  <span>Where are you playing?</span>
+<div class="layout-column">
+  <div class="form-input flex-100">
+    <div class="layout-row">
+      {{#if model.course}}
+        <div class="flex-90" onClick={{action (mut showCoursesSheet)}}>{{model.course.name}}</div>
+        <div class="flex-10">{{#paper-button iconButton=true onClick=(action 'removeCourse')}}{{paper-icon "close"}}{{/paper-button}}</div>
+      {{else}}
+        <div onClick={{action (mut showCoursesSheet)}}>
+          Where are you playing?
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="form-input flex-90" onClick={{action (mut showFriendsSheet)}}>
+    <span>
+      Who are you playing with?
+    </span>
+  </div>
 </div>
 
-<div class="form-input">
-  <span>Who are you playing with?</span>
-</div>
+{{#if showCoursesSheet}}
+  {{#paper-dialog class="flex-100" onClose=(action 'closeCoursesDialog' 'cancel') clickOutsideToClose=true fullscreen=true}}
+    {{#paper-dialog-content}}
+      <h2>Courses</h2>
+      {{#paper-tabs selected=courseFilter center=true onChange=(action (mut courseFilter)) as |tabs|}}
+        {{#tabs.tab value="nearby"}}
+          Near Me
+        {{/tabs.tab}}
+        {{#tabs.tab value="all"}}
+          All
+        {{/tabs.tab}}
+      {{/paper-tabs}}
+
+      {{#liquid-bind availableCourses class="md-padding" as |courses|}}
+        {{#if courses}}
+          {{#paper-list}}
+            {{#each courses as |course|}}
+              {{#paper-item class="md-1-line" onClick=(action 'closeCoursesDialog' (hash action='save' value=course))}}
+                {{course.name}}
+              {{/paper-item}}
+            {{/each}}
+          {{/paper-list}}
+        {{else}}
+          No courses found near you
+        {{/if}}
+      {{/liquid-bind}}
+    {{/paper-dialog-content}}
+  {{/paper-dialog}}
+{{/if}}
+
+{{#if showFriendsSheet}}
+   {{#paper-dialog class="flex-100" onClose=(action 'closeFriendsDialog' 'cancel') clickOutsideToClose=true fullscreen=true}}
+    {{#paper-dialog-content}}
+      {{#paper-list}}
+        {{#paper-item class="md-2-line"}}
+          <img src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png' class="md-avatar">
+          <div class="md-list-item-text">
+            <h3>John Doe</h3>
+          </div>
+        {{/paper-item}}
+      {{/paper-list}}
+    {{/paper-dialog-content}}
+    {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button onClick=(action "closeFriendsDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action "closeFriendsDialog" "save")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}
 {{!-- {{#if model.users}}
   Selected users
   {{#paper-chips
