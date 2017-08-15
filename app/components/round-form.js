@@ -10,24 +10,23 @@ export default Component.extend({
   showFriendsSheet: false,
   showCoursesSheet: false,
   didSave: null,
-  locatedCourses: null,
   model: null,
-  searchedCourses: null,
-  searchedUsers: null,
-  userFilter: null,
+  courseFilter: 'nearby',
+  friendsFilter: 'friends',
 
   courses: null,
   nearByCourses: null,
+  friends: null,
+  allUsers: null,
 
-  availableUsers: computed('model.users.[]', 'searchedUsers.[]', function() {
-    const searchedUsers = this.get('searchedUsers');
-    if (!searchedUsers) return;
+  selectedPlayers: null,
 
-    const users = this.get('model.users');
-
-    users.forEach(function(user) { searchedUsers.removeObject(user); });
-
-    return searchedUsers;
+  availableUsers: computed('friendsFilter', function() {
+    if (this.get('friendsFilter') === 'all')  {
+      return this.get('users');
+    } else {
+      return this.get('friends');
+    }
   }),
 
   availableCourses: computed('courseFilter', function() {
@@ -44,6 +43,13 @@ export default Component.extend({
 
     store.findAll('course').then((courses) => this.set('courses', courses));
     this.set('nearByCourses', []); //empty for now
+
+    // @todo
+    // refactor to use user.friends once we have users up and running
+    store.findAll('user').then((users) => this.set('friends', users));
+    this.set('users', this.get('friends'));
+
+    this.set('selectedPlayers', []);
   },
 
   willDestroyElement() {
@@ -57,30 +63,16 @@ export default Component.extend({
   },
 
   actions: {
-    addCourse(course) {
-      this.setProperties({
-        locatedCourses: null,
-        searchedCourses: null
-      });
-
-      this.get('model').set('course', course);
-    },
-
     addUser(user) {
-      this.setProperties({
-        searchedUsers: null,
-        userFilter: null
-      });
-
-      this.get('model.users').addObject(user);
-    },
-
-    removeCourse() {
-      this.get('model').set('course', null);
+      this.get('selectedPlayers').addObject(user);
     },
 
     removeUser(user) {
-      this.get('model.users').removeObject(user);
+      this.get('selectedPlayers').removeObject(user);
+    },
+
+    removeCourse() {
+      this.set('model.course', null);
     },
 
     save() {
@@ -88,9 +80,9 @@ export default Component.extend({
       .then((round) => this.sendAction('didSave', round));
     },
 
-    closeFriendsDialog(event) {
-      if(event === 'save') {
-        // do ssomething
+    closeFriendsDialog(args) {
+      if(args.action === 'save') {
+        this.set('model.users', this.get('selectedPlayers'));
       }
       this.set('showFriendsSheet', false);
     },

@@ -13,9 +13,16 @@
   </div>
 
   <div class="form-input flex-90" onClick={{action (mut showFriendsSheet)}}>
-    <span>
-      Who are you playing with?
-    </span>
+    {{#if model.users}}
+      {{paper-contact-chips
+        readOnly=true
+        content=model.users
+        imageField='avatarUrl'}}
+    {{else}}
+      <div>
+        Who are you playing with?
+      </div>
+    {{/if}}
   </div>
 </div>
 
@@ -50,69 +57,42 @@
 {{/if}}
 
 {{#if showFriendsSheet}}
-   {{#paper-dialog class="flex-100" onClose=(action 'closeFriendsDialog' 'cancel') clickOutsideToClose=true fullscreen=true}}
+  {{#paper-dialog class="flex-100" onClose=(action 'closeFriendsDialog' 'cancel') clickOutsideToClose=true fullscreen=true}}
     {{#paper-dialog-content}}
-      {{#paper-list}}
-        {{#paper-item class="md-2-line"}}
-          <img src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png' class="md-avatar">
-          <div class="md-list-item-text">
-            <h3>John Doe</h3>
-          </div>
-        {{/paper-item}}
-      {{/paper-list}}
+      <h2>Friends</h2>
+      {{#paper-tabs selected=friendsFilter center=true onChange=(action (mut friendsFilter)) as |tabs|}}
+        {{#tabs.tab value="friends"}}
+          Friends
+        {{/tabs.tab}}
+        {{#tabs.tab value="all"}}
+          All
+        {{/tabs.tab}}
+      {{/paper-tabs}}
+
+      {{#liquid-bind availableUsers class="md-padding" as |friends|}}
+        {{#if friends}}
+          {{#paper-list}}
+            {{#each friends as |friend|}}
+              {{#paper-item class="md-1-line"}}
+                {{#if (array-contains selectedPlayers friend)}}
+                  {{#paper-button iconButton=true onClick=(action 'removeUser' friend)}}{{paper-icon 'check-box'}}{{/paper-button}}
+                {{else}}
+                  <img src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png' class="md-avatar" onClick={{action 'addUser' friend}}>
+                {{/if}}
+                <div class="md-list-item-text">
+                  <h3>{{friend.name}}</h3>
+                </div>
+              {{/paper-item}}
+            {{/each}}
+          {{/paper-list}}
+        {{else}}
+          No friends found
+        {{/if}}
+      {{/liquid-bind}}
     {{/paper-dialog-content}}
     {{#paper-dialog-actions class="layout-row"}}
       {{#paper-button onClick=(action "closeFriendsDialog" "cancel")}}Cancel{{/paper-button}}
-      {{#paper-button onClick=(action "closeFriendsDialog" "save")}}OK{{/paper-button}}
+      {{#paper-button onClick=(action 'closeFriendsDialog' (hash action='save' value=friend))}}OK{{/paper-button}}
     {{/paper-dialog-actions}}
   {{/paper-dialog}}
 {{/if}}
-{{!-- {{#if model.users}}
-  Selected users
-  {{#paper-chips
-    content=model.users
-    readOnly=readOnly
-    removeItem=(action 'removeUser') as |user|}}
-    {{user.name}}
-  {{/paper-chips}}
-{{/if}}
-
-{{#filterable-resource
-  filter=userFilter
-  filteredList=searchedUsers
-  modelName='user'
-  searchText='Search for Players'}}
-  <ul>
-    {{#each availableUsers as |user|}}
-      <li><a {{action 'addUser' user}}>{{user.name}}</a></li>
-    {{/each}}
-  </ul>
-{{/filterable-resource}}
-
-{{#if model.course}}
-  Selected course: {{model.course.name}} | <a {{action 'removeCourse'}}>Remove</a>
-{{else}}
-  {{#filterable-resource
-    filteredList=searchedCourses
-    modelName='course'
-    searchText='Search for Courses'}}
-    <ul>
-      {{#each searchedCourses as |course|}}
-        <li><a {{action 'addCourse' course}}>{{course.name}}</a></li>
-      {{/each}}
-    </ul>
-  {{/filterable-resource}}
-
-  {{#course-locator
-    courses=locatedCourses}}
-    <ul>
-      {{#each locatedCourses as |course|}}
-        <li><a {{action 'addCourse' course}}>{{course.name}}</a></li>
-      {{/each}}
-    </ul>
-  {{/course-locator}}
-{{/if}}
-
-<hr>
-
-{{#paper-button onClick=(action 'save') raised=true primary=true class='btn-block'}}Start Round{{/paper-button}} --}}
