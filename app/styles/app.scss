@@ -6,6 +6,10 @@
 @import 'par-statuses';
 @import 'round-form';
 
+html, body {
+  height: 100%;
+}
+
 .primary {
   background-color: $primary;
   color: $primaryText;
@@ -42,9 +46,9 @@ md-toolbar.md-default-theme.primary-dark {
 
 .content {
   display: flex;
-  width: 100%;
+  height: 100%;
 }
 
 .container {
-  width: 100%;
+  height: 100%;
 }

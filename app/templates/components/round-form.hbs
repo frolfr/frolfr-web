@@ -1,5 +1,5 @@
 <div class="layout-column">
-  <div class="form-input flex-100">
+  <div class="form-input">
     <div class="layout-row">
       {{#if model.course}}
         <div class="flex-90" onClick={{action (mut showCoursesSheet)}}>{{model.course.name}}</div>
@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="form-input flex-90" onClick={{action (mut showFriendsSheet)}}>
+  <div class="form-input" onClick={{action (mut showFriendsSheet)}}>
     {{#if model.users}}
       {{paper-contact-chips
         readOnly=true
@@ -24,6 +24,11 @@
       </div>
     {{/if}}
   </div>
+</div>
+
+<div class="actions">
+  {{#paper-button raised=true primary=true onClick=(action "saveRound")}}Start Round{{/paper-button}}
+  {{#paper-button onClick=(action "cancelRound")}}Cancel{{/paper-button}}
 </div>
 
 {{#if showCoursesSheet}}
