@@ -6,15 +6,19 @@
 
 {{#paper-content class='content padding-bottom--xl'}}
   {{liquid-outlet class='md-padding container'}}
-  <div class='nav-fab'>
-    {{#link-to 'rounds.new'}}
-      {{#paper-button fab=true classNames='accent'}}{{paper-icon 'add' size='36'}}{{/paper-button}}
-    {{/link-to}}
-  </div>
+  {{#if ui.isFabVisible}}
+    <div class='nav-fab'>
+      {{#link-to 'rounds.new'}}
+        {{#paper-button fab=true classNames='accent'}}{{paper-icon 'add' size='36'}}{{/paper-button}}
+      {{/link-to}}
+    </div>
+  {{/if}}
 {{/paper-content}}
 
-{{#bottom-nav}}
-  {{bottom-nav-item targetRoute='rounds.index' icon="golf-course" text="Rounds"}}
-  {{bottom-nav-item targetRoute='friends.index' icon="people" text="Friends"}}
-  {{bottom-nav-item targetRoute='users.index' icon="person-outline" text="Profile"}}
-{{/bottom-nav}}
+{{#if ui.isBottomNavVisible}}
+  {{#bottom-nav}}
+    {{bottom-nav-item targetRoute='rounds.index' icon="golf-course" text="Rounds"}}
+    {{bottom-nav-item targetRoute='friends.index' icon="people" text="Friends"}}
+    {{bottom-nav-item targetRoute='users.index' icon="person-outline" text="Profile"}}
+  {{/bottom-nav}}
+{{/if}}
