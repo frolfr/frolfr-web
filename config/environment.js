@@ -1,10 +1,10 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     apiHost: '',
     modulePrefix: 'frolfr-web',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
