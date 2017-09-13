@@ -16,11 +16,15 @@
       color: $belowPar;
     }
   }
+}
 
-  .avatar {
-    width: 40px;
-    height: 40px;
-    display: inline;
-    border-radius: 50%;
-  }
+.avatar {
+  width: 40px;
+  height: 40px;
+  display: inline;
+  border-radius: 50%;
+}
+
+.avatar-link {
+  padding: inherit;
 }

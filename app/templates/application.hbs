@@ -1,6 +1,25 @@
 {{#paper-toolbar class='primary-dark'}}
   {{#paper-toolbar-tools}}
     <h2>Frolfr</h2>
+
+    <span class="flex"></span>
+
+    {{#if session.isAuthenticated}}
+      {{#link-to 'user.scorecards' sessionAccount.currentUser.id}}
+        {{#paper-button raised=true mini=true class='avatar-link'}}
+          <img class='avatar' src={{sessionAccount.currentUser.avatarSrc}} alt={{sessionAccount.currentUser.firstName}} title={{sessionAccount.currentUser.firstName}}>
+        {{/paper-button}}
+      {{/link-to}}
+      {{#paper-button raised=true onClick=(action 'logout')}}
+        Log Out
+      {{/paper-button}}
+    {{else}}
+      {{#link-to 'login'}}
+        {{#paper-button raised=true}}
+          Log In
+        {{/paper-button}}
+      {{/link-to}}
+    {{/if}}
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
