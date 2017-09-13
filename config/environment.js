@@ -48,5 +48,9 @@ module.exports = function(environment) {
     ENV.apiHost = "https://frolfr.herokuapp.com";
   }
 
+  ENV['ember-simple-auth'] = {
+    routeAfterAuthentication: 'rounds'
+  };
+
   return ENV;
 };
