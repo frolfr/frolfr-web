@@ -6,7 +6,6 @@ const { service } = inject;
 export default Component.extend({
   classNames: ['round-form', 'flex-100'],
   store: service(),
-  router: service(),
 
   showFriendsSheet: false,
   showCoursesSheet: false,
@@ -79,11 +78,6 @@ export default Component.extend({
     saveRound() {
       this.get('model').save()
       .then((round) => this.sendAction('didSave', round));
-    },
-
-    cancelRound() {
-      this.get('model').rollbackAttributes();
-      this.get('router').transitionTo('rounds.index');
     },
 
     closeFriendsDialog(args) {

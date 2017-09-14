@@ -28,7 +28,8 @@
 
 <div class="actions">
   {{#paper-button raised=true primary=true onClick=(action "saveRound")}}Start Round{{/paper-button}}
-  {{#paper-button onClick=(action "cancelRound")}}Cancel{{/paper-button}}
+  {{#paper-link 'rounds.index'}}Cancel{{/paper-link}}
+
 </div>
 
 {{#if showCoursesSheet}}
