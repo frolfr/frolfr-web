@@ -13,20 +13,20 @@ export default Component.extend({
   didSave: null,
   model: null,
   courseFilter: 'nearby',
-  friendsFilter: 'friends',
+  usersFilter: 'users',
 
   courses: null,
   nearByCourses: null,
-  friends: null,
+  users: null,
   allUsers: null,
 
   selectedPlayers: null,
 
-  availableUsers: computed('friendsFilter', function() {
-    if (this.get('friendsFilter') === 'all')  {
+  availableUsers: computed('usersFilter', function() {
+    if (this.get('usersFilter') === 'all')  {
       return this.get('users');
     } else {
-      return this.get('friends');
+      return this.get('users');
     }
   }),
 
@@ -46,9 +46,9 @@ export default Component.extend({
     this.set('nearByCourses', []); //empty for now
 
     // @todo
-    // refactor to use user.friends once we have users up and running
-    store.findAll('user').then((users) => this.set('friends', users));
-    this.set('users', this.get('friends'));
+    // refactor to use user.users once we have users up and running
+    store.findAll('user').then((users) => this.set('users', users));
+    this.set('users', this.get('users'));
 
     this.set('selectedPlayers', []);
   },

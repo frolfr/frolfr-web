@@ -25,9 +25,6 @@ Router.map(function() {
   this.route('user', { path: 'users/:id' }, function() {
     this.route('scorecards');
   });
-  this.route('friends', function() {
-
-  });
 });
 
 export default Router;

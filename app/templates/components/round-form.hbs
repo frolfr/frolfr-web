@@ -65,8 +65,8 @@
   {{#paper-dialog class="flex-100" onClose=(action 'closeFriendsDialog' 'cancel') clickOutsideToClose=true fullscreen=true}}
     {{#paper-dialog-content}}
       <h2>Friends</h2>
-      {{#paper-tabs selected=friendsFilter center=true onChange=(action (mut friendsFilter)) as |tabs|}}
-        {{#tabs.tab value="friends"}}
+      {{#paper-tabs selected=usersFilter center=true onChange=(action (mut usersFilter)) as |tabs|}}
+        {{#tabs.tab value="users"}}
           Friends
         {{/tabs.tab}}
         {{#tabs.tab value="all"}}
@@ -74,30 +74,30 @@
         {{/tabs.tab}}
       {{/paper-tabs}}
 
-      {{#liquid-bind availableUsers class="md-padding" as |friends|}}
-        {{#if friends}}
+      {{#liquid-bind availableUsers class="md-padding" as |users|}}
+        {{#if users}}
           {{#paper-list}}
-            {{#each friends as |friend|}}
+            {{#each users as |user|}}
               {{#paper-item class="md-1-line"}}
-                {{#if (array-contains selectedPlayers friend)}}
-                  {{#paper-button iconButton=true onClick=(action 'removeUser' friend)}}{{paper-icon 'check-box'}}{{/paper-button}}
+                {{#if (array-contains selectedPlayers user)}}
+                  {{#paper-button iconButton=true onClick=(action 'removeUser' user)}}{{paper-icon 'check-box'}}{{/paper-button}}
                 {{else}}
-                  <img src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png' class="md-avatar" onClick={{action 'addUser' friend}}>
+                  <img src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png' class="md-avatar" onClick={{action 'addUser' user}}>
                 {{/if}}
                 <div class="md-list-item-text">
-                  <h3>{{friend.name}}</h3>
+                  <h3>{{user.name}}</h3>
                 </div>
               {{/paper-item}}
             {{/each}}
           {{/paper-list}}
         {{else}}
-          No friends found
+          No users found
         {{/if}}
       {{/liquid-bind}}
     {{/paper-dialog-content}}
     {{#paper-dialog-actions class="layout-row"}}
       {{#paper-button onClick=(action "closeFriendsDialog" "cancel")}}Cancel{{/paper-button}}
-      {{#paper-button onClick=(action 'closeFriendsDialog' (hash action='save' value=friend))}}OK{{/paper-button}}
+      {{#paper-button onClick=(action 'closeFriendsDialog' (hash action='save' value=user))}}OK{{/paper-button}}
     {{/paper-dialog-actions}}
   {{/paper-dialog}}
 {{/if}}

@@ -1,7 +1,7 @@
 export default function(){
   this.transition(
     this.fromRoute('rounds'),
-    this.toRoute('friends'),
+    this.toRoute('courses'),
     this.use('toLeft'),
     this.reverse('toRight')
   );
@@ -14,14 +14,14 @@ export default function(){
   );
 
   this.transition(
-    this.fromRoute('friends'),
+    this.fromRoute('courses'),
     this.toRoute('rounds'),
     this.use('toLeft'),
     this.reverse('toRight')
   );
 
   this.transition(
-    this.fromRoute('friends'),
+    this.fromRoute('courses'),
     this.toRoute('users'),
     this.use('toLeft'),
     this.reverse('toRight')
