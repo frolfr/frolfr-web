@@ -24,7 +24,7 @@
   <div class='panel-body row'>
     {{#each strokesOptions as |strokes|}}
       <div class='col-xs-4'>
-        <a {{action 'save' strokes}} class='btn {{if (eq strokes turn.strokes) 'btn-disabled' 'btn-primary'}} btn-strokes btn-block' disabled={{if (eq strokes turn.strokes) 'disabled'}}>{{if strokes strokes 'Skip'}}</a>
+        <a {{action 'save' strokes}} class='btn {{if (eq strokes turn.strokes) 'btn-disabled' 'btn-primary'}} btn-block' disabled={{if (eq strokes turn.strokes) 'disabled'}}>{{if strokes strokes 'Skip'}}</a>
       </div>
     {{/each}}
   </div>
