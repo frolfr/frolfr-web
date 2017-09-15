@@ -3,31 +3,41 @@
     <tr>
       <th></th>
       {{#each scorecards as |scorecard|}}
-        <th>{{scorecard.user.initials}}</th>
+        <th>
+          {{#if scorecard.user.avatarSrc}}
+            <img class='media-object' class='avatar' src={{scorecard.user.avatarSrc}}>
+          {{else}}
+            <img class='media-object' class='avatar' src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png'>
+          {{/if}}
+          <br>
+          {{scorecard.user.initials}}
+        </th>
       {{/each}}
     </tr>
   </thead>
   <tbody>
     {{#each holeNumbers as |holeNumber|}}
-      {{#link-to 'round.turns' round holeNumber tagName='tr'}}
-        <th>{{holeNumber}}</th>
+      <tr>
+        {{#link-to 'round.turns' round holeNumber tagName='th'}}
+          {{holeNumber}}
+        {{/link-to}}
         {{#each scorecards as |scorecard|}}
           {{scorecard-turn holeNumber=holeNumber scorecard=scorecard tagName='td'}}
         {{/each}}
-      {{/link-to}}
+      </tr>
     {{/each}}
   </tbody>
   <tfoot>
     <tr>
       <th>+ / -</th>
       {{#each scorecards as |scorecard|}}
-        <th>{{scorecard.score}}</th>
+        <td>{{scorecard.score}}</td>
       {{/each}}
     </tr>
     <tr>
       <th>T</th>
       {{#each scorecards as |scorecard|}}
-        <th>{{scorecard.total}}</th>
+        <td>{{scorecard.total}}</td>
       {{/each}}
     </tr>
   </tfoot>

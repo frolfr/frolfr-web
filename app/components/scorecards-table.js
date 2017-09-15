@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: [ 'table-responsive' ],
+  classNames: [ 'table-wrapper' ],
   course: null,
   round: null,
   scorecards: null,
