@@ -80,6 +80,7 @@
           {{#paper-list}}
             {{#each users as |user|}}
               {{#paper-item class="md-1-line"}}
+                <!-- Unsure what this does or how it's used, but could potentially be refactored by user-avatar component  -->
                 {{#if (array-contains selectedPlayers user)}}
                   {{#paper-button iconButton=true onClick=(action 'removeUser' user)}}{{paper-icon 'check-box'}}{{/paper-button}}
                 {{else}}

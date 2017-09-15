@@ -7,7 +7,7 @@
     {{#if session.isAuthenticated}}
       {{#link-to 'user.scorecards' sessionAccount.currentUser.id}}
         {{#paper-button raised=true mini=true class='avatar-link'}}
-          <img class='avatar' src={{sessionAccount.currentUser.avatarSrc}} alt={{sessionAccount.currentUser.firstName}} title={{sessionAccount.currentUser.firstName}}>
+          {{user-avatar user=sessionAccount.currentUser}}
         {{/paper-button}}
       {{/link-to}}
       {{#paper-button raised=true onClick=(action 'logout')}}

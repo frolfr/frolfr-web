@@ -4,11 +4,7 @@
       <th></th>
       {{#each scorecards as |scorecard|}}
         <th>
-          {{#if scorecard.user.avatarSrc}}
-            <img class='media-object' class='avatar' src={{scorecard.user.avatarSrc}}>
-          {{else}}
-            <img class='media-object' class='avatar' src='http://res.cloudinary.com/frolfr/image/upload/v1450881126/avatar-placeholder_n7w7z8.png'>
-          {{/if}}
+          {{user-avatar user=scorecard.user}}
           <br>
           {{scorecard.user.initials}}
         </th>
