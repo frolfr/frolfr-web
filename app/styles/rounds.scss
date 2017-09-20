@@ -1,0 +1,30 @@
+.round-resource {
+  .score {
+    font-size: 64px;
+    text-align: center;
+    border: none;
+
+    &.abovePar {
+      color: $abovePar;
+    }
+
+    &.par {
+      color: $par;
+    }
+
+    &.belowPar {
+      color: $belowPar;
+    }
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  display: inline;
+  border-radius: 50%;
+}
+
+.avatar-link {
+  padding: inherit;
+}

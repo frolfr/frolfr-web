@@ -1,5 +1,59 @@
-@import "ember-bootstrap/bootstrap";
+@import 'variables';
+@import 'ember-paper';
 
-@import "par-statuses";
-@import "scorecards-table";
-@import "turns-form";
+@import 'nav';
+@import 'rounds';
+@import 'par-statuses';
+@import 'round-form';
+@import 'tables';
+
+html, body {
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+.primary {
+  background-color: $primary;
+  color: $primaryText;
+}
+
+.primary-light {
+  background-color: $primaryLight;
+  color: $primaryText;
+}
+
+md-toolbar.md-default-theme.primary-dark {
+  background-color: $primaryDark;
+  color: $accentText;
+}
+
+.accent {
+  background-color: $accent;
+  color: $accentText;
+}
+
+.accent-light {
+  background-color: $accentLight;
+  color: $accentText;
+}
+
+.accent-dark {
+  background-color: $accentDark;
+  color: $accentText;
+}
+
+.padding-bottom--xl {
+  padding-bottom: 75px;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}

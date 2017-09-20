@@ -1,25 +1,59 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, computed, inject } = Ember;
+const { service } = inject;
+
+export default Component.extend({
+  classNames: ['round-form', 'flex-100'],
+  store: service(),
+
+  showFriendsSheet: false,
+  showCoursesSheet: false,
   didSave: null,
-  locatedCourses: null,
   model: null,
-  searchedCourses: null,
-  searchedUsers: null,
-  userFilter: null,
+  courseFilter: 'nearby',
+  usersFilter: 'users',
 
-  availableUsers: Ember.computed('model.users.[]', 'searchedUsers.[]', function() {
-    const searchedUsers = this.get('searchedUsers');
-    if (!searchedUsers) return;
+  courses: null,
+  nearByCourses: null,
+  users: null,
+  allUsers: null,
 
-    const users = this.get('model.users');
+  selectedPlayers: null,
 
-    users.forEach(function(user) { searchedUsers.removeObject(user); });
-
-    return searchedUsers;
+  availableUsers: computed('usersFilter', function() {
+    if (this.get('usersFilter') === 'all')  {
+      return this.get('users');
+    } else {
+      return this.get('users');
+    }
   }),
 
+  availableCourses: computed('courseFilter', function() {
+    if (this.get('courseFilter') === 'all') {
+      return this.get('courses');
+    } else {
+      return this.get('nearByCourses');
+    }
+  }),
+
+  init() {
+    this._super('arguments');
+    const store = this.get('store');
+
+    store.findAll('course').then((courses) => this.set('courses', courses));
+    this.set('nearByCourses', []); //empty for now
+
+    // @todo
+    // refactor to use user.users once we have users up and running
+    store.findAll('user').then((users) => this.set('users', users));
+    this.set('users', this.get('users'));
+
+    this.set('selectedPlayers', []);
+  },
+
   willDestroyElement() {
+    this._super(...arguments);
     let model = this.get('model');
 
     if (model.get('isNew')) { return model.destroyRecord(); }
@@ -29,35 +63,35 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    addCourse(course) {
-      this.setProperties({
-        locatedCourses: null,
-        searchedCourses: null
-      });
-
-      this.get('model').set('course', course);
-    },
-
     addUser(user) {
-      this.setProperties({
-        searchedUsers: null,
-        userFilter: null
-      });
-
-      this.get('model.users').addObject(user);
-    },
-
-    removeCourse() {
-      this.get('model').set('course', null);
+      this.get('selectedPlayers').addObject(user);
     },
 
     removeUser(user) {
-      this.get('model.users').removeObject(user);
+      this.get('selectedPlayers').removeObject(user);
     },
 
-    save() {
+    removeCourse() {
+      this.set('model.course', null);
+    },
+
+    saveRound() {
       this.get('model').save()
       .then((round) => this.sendAction('didSave', round));
+    },
+
+    closeFriendsDialog(args) {
+      if(args.action === 'save') {
+        this.set('model.users', this.get('selectedPlayers'));
+      }
+      this.set('showFriendsSheet', false);
+    },
+
+    closeCoursesDialog(args) {
+      if(args.action === 'save') {
+        this.set('model.course', args.value);
+      }
+      this.set('showCoursesSheet', false);
     }
   }
 });

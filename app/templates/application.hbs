@@ -1,18 +1,43 @@
-{{#bs-navbar type='inverse' as |navbar|}}
-  <div class='navbar-header'>
-    {{navbar.toggle}}
-    {{#link-to 'rounds.index' class='navbar-brand'}}Frolfr{{/link-to}}
-  </div>
-  {{#navbar.content}}
-    {{#navbar.nav as |nav|}}
-      {{#nav.item}}{{#nav.link-to 'rounds.new'}}+ New Round{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'courses'}}Courses{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'users'}}Users{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'rounds.index'}}Rounds{{/nav.link-to}}{{/nav.item}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
-{{/bs-navbar}}
+{{#paper-toolbar class='primary-dark'}}
+  {{#paper-toolbar-tools}}
+    <h2>Frolfr</h2>
 
-<div class='container'>
-  {{liquid-outlet}}
-</div>
+    <span class="flex"></span>
+
+    {{#if session.isAuthenticated}}
+      {{#link-to 'user.scorecards' sessionAccount.currentUser.id}}
+        {{#paper-button raised=true mini=true class='avatar-link'}}
+          {{user-avatar user=sessionAccount.currentUser}}
+        {{/paper-button}}
+      {{/link-to}}
+      {{#paper-button raised=true onClick=(action 'logout')}}
+        Log Out
+      {{/paper-button}}
+    {{else}}
+      {{#link-to 'login'}}
+        {{#paper-button raised=true}}
+          Log In
+        {{/paper-button}}
+      {{/link-to}}
+    {{/if}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+{{#paper-content class='content padding-bottom--xl'}}
+  {{liquid-outlet class='md-padding container flex-100'}}
+  {{#if ui.isFabVisible}}
+    <div class='nav-fab'>
+      {{#link-to 'rounds.new'}}
+        {{#paper-button fab=true classNames='accent'}}{{paper-icon 'add' size='36'}}{{/paper-button}}
+      {{/link-to}}
+    </div>
+  {{/if}}
+{{/paper-content}}
+
+{{#if ui.isBottomNavVisible}}
+  {{#bottom-nav}}
+    {{bottom-nav-item targetRoute='rounds.index' icon="golf-course" text="Rounds"}}
+    {{bottom-nav-item targetRoute='courses' icon="map" text="Courses"}}
+    {{bottom-nav-item targetRoute='users.index' icon="person-outline" text="Users"}}
+  {{/bottom-nav}}
+{{/if}}

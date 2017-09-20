@@ -1,16 +1,18 @@
-<div class='form-group'>
-  <label for='search'>{{if searchText searchText 'Search'}}</label>
-  {{input value=filter key-up=(action 'autoComplete' filter) class='form-control'}}
-</div>
-
-{{#if hasBlock}}
-  {{yield}}
-{{else}}
-  <ul>
-    {{#each filteredList as |item|}}
-      <li>
-        {{link-to item.name modelName item}}
-      </li>
-    {{/each}}
-  </ul>
-{{/if}}
+{{#paper-autocomplete
+  allowClear=true
+  options=filteredList
+  searchText=(readonly filter)
+  onSearchTextChange=(action (mut filter))
+  search=(action 'autoComplete')
+  searchField='name'
+  selected=selectedItem
+  labelPath='name'
+  placeholder='Search'
+  onSelectionChange=(action (mut selectedItem))
+  as |item autocomplete|
+}}
+  {{paper-autocomplete-highlight
+    label=item.name
+    searchText=autocomplete.searchText
+    flags='i'}}
+{{/paper-autocomplete}}

@@ -1,0 +1,39 @@
+.nav-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: color($primary);
+  padding: 10px 0;
+  box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.26);
+  -webkit-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.26);
+  -moz-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.26);
+
+  .footer-link {
+    color: $accentTextDark;
+    transition: 0.1s;
+
+    .paper-icon {
+      color: $accentTextDark;
+      transition: 0.1s;
+    }
+  }
+
+  .footer-link.active {
+    color: #fff;
+    font-size: 18px;
+    transition: 0.1s;
+
+    .paper-icon {
+      color: #fff;
+      font-size: 32px;
+      transition: 0.1s;
+    }
+  }
+}
+
+.nav-fab {
+  right: 10px;
+  bottom: 70px;
+  position: fixed;
+}

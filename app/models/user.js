@@ -1,25 +1,28 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-export default DS.Model.extend({
-  avatarUrl: DS.attr('string'),
-  email: DS.attr('string'),
-  firstName: DS.attr('string'),
-  lastName: DS.attr('string'),
-  middleName: DS.attr('string'),
-  password: DS.attr('string'),
+const { attr, hasMany, Model } = DS;
+const { computed } = Ember;
 
-  scorecards: DS.hasMany('scorecards'),
+export default Model.extend({
+  avatarUrl: attr('string'),
+  email: attr('string'),
+  firstName: attr('string'),
+  lastName: attr('string'),
+  middleName: attr('string'),
+  password: attr('string'),
 
-  name: Ember.computed('_fullNames', function() {
+  scorecards: hasMany('scorecards'),
+
+  name: computed('_fullNames', function() {
     return this.get('_fullNames').join(' ');
   }),
 
-  initials: Ember.computed('_fullNames', function() {
+  initials: computed('_fullNames', function() {
     return this.get('_fullNames').map(function(name) { return name[0]; }).join('');
   }),
 
-  _fullNames: Ember.computed('firstName', 'middleName', 'lastName', function() {
+  _fullNames: computed('firstName', 'middleName', 'lastName', function() {
     return [
       this.get('firstName'),
       this.get('middleName'),

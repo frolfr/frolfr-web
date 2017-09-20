@@ -1,0 +1,13 @@
+<form {{action 'authenticate' on='submit'}}>
+  {{#if errorMessage}}
+    <p>
+      <strong>Error:</strong>
+      <code>{{errorMessage}}</code>
+    </p>
+  {{/if}}
+
+  {{paper-input block=true label='Email' type='email' value=email onChange=(action (mut email))}}
+  {{paper-input block=true label='Password' type='password' value=password onChange=(action (mut password))}}
+
+  {{#paper-button raised=true primary=true type='submit'}}Login{{/paper-button}}
+</form>

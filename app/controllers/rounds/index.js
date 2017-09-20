@@ -10,5 +10,11 @@ export default Ember.Controller.extend({
     if (!total) return [];
 
     return new Array(total+1).join('x').split('').map((e,i) => i+1);
-  })
+  }),
+
+  actions: {
+    goToRound(round) {
+      this.transitionToRoute('round', round);
+    }
+  }
 });
