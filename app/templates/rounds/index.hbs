@@ -1,12 +1,3 @@
-{{#paper-tabs classNames='primary-dark' borderBottom=true as |tabs|}}
-  {{#tabs.tab}}
-    My Rounds
-  {{/tabs.tab}}
-  {{#tabs.tab}}
-    All Rounds
-  {{/tabs.tab}}
-{{/paper-tabs}}
-
 {{#each model as |round|}}
   {{round-resource round=round scorecards=round.scorecards goToRound=(action 'goToRound')}}
 {{/each}}
