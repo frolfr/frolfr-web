@@ -10,7 +10,11 @@ export default DS.Model.extend({
 
   total: Ember.computed.sum('_turnStrokes'),
   score: Ember.computed('_coursePar', 'total', function() {
-    return this.get('total') - this.get('_coursePar');
+    const diff = this.get('total') - this.get('_coursePar');
+
+    if (diff > 0) { return '+' + diff; }
+
+    return diff;
   }),
 
   _coursePar: Ember.computed.sum('_turnPars'),
