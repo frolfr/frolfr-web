@@ -1,25 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: [ 'panel', 'panel-default' ],
   turn: null,
   turns: null,
-
-  init() {
-    this._super(...arguments);
-
-    this.set('editId', this.get('turns.firstObject.id'));
-  },
-
-  isEditingTurn: Ember.computed('editId', 'turn.id', function() {
-    // TODO Why doesn't computed.equal work?
-    return this.get('editId') === this.get('turn.id');
-  }),
 
   holeNumber: Ember.computed.alias('turn.holeNumber'),
 
   status: Ember.computed('turn.score', function() {
     const score = this.get('turn.score');
+
+    // TODO Fix style
+    if (score === null) { return; }
 
     if (0 < score - 1) { return 'multiple-above-par'; }
     else if (0 < score) { return 'above-par'; }
@@ -28,28 +19,23 @@ export default Ember.Component.extend({
     else { return 'multiple-below-par'; }
   }),
 
-  strokesOptions: Ember.computed(function() {
-    return [null, 1, 2, 3, 4, 5, 6, 7, 8];
-  }),
-
   actions: {
-    save(strokes) {
+    addOne() {
       const turn = this.get('turn');
-      turn.set('strokes', strokes);
+      turn.incrementProperty('strokes');
 
-      turn.save()
-      .then(() => {
-        const turns = this.get('turns');
-        const nextTurn = turns.find(function(turn) {
-          return turn.get('strokes') === null;
-        });
+      turn.save();
+    },
 
-        if (!nextTurn) {
-          this.set('editId', null);
-        } else {
-          this.set('editId', nextTurn.id);
-        }
-      });
+    subtractOne() {
+      const turn = this.get('turn');
+      if (turn.get('strokes') === 1) {
+        turn.set('strokes', null);
+      } else {
+        turn.decrementProperty('strokes');
+      }
+
+      turn.save();
     }
   }
 });

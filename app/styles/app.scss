@@ -6,9 +6,12 @@
 @import 'par-statuses';
 @import 'round-form';
 @import 'tables';
+@import 'turns';
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 html, body {
   height: 100%;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {

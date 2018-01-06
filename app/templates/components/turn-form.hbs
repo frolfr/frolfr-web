@@ -1,27 +1,19 @@
-<div class='panel-heading' {{action edit turn.id}}>
-  <div class='panel-title row'>
-    <div class='col-xs-3'>
-      <div>
-        {{user-avatar user=turn.scorecard.user}}
-      </div>
-    </div>
-
-    <div class='col-xs-6 text-center'>
-      {{turn.scorecard.user.name}}
-    </div>
-
-    <div class='col-xs-3 pull-right {{status}} par-status'>
+{{#paper-item class="md-3-line"}}
+  <div class='md-list-item-text'>
+    {{user-avatar user=turn.scorecard.user classNames='avatar md-avatar'}}
+    <br>
+    <span>{{turn.scorecard.user.initials}}</span>
+  </div>
+  <div class='md-list-item-text'>
+    {{#paper-button raised=true disabled=(lt turn.strokes 1) mini=true onClick=(action 'subtractOne')}}-{{/paper-button}}
+    <span class='par-status {{status}}'>
       {{if turn.strokes turn.strokes '-'}}
-    </div>
+    </span>
+    {{#paper-button raised=true disabled=(gte turn.strokes 8) mini=true onClick=(action 'addOne')}}+{{/paper-button}}
   </div>
-</div>
+  <div class='md-list-item-text'>
+    <h4>{{turn.scorecard.total}} ({{turn.scorecard.score}})</h4>
+  </div>
+{{/paper-item}}
 
-{{#liquid-if isEditingTurn}}
-  <div class='panel-body row'>
-    {{#each strokesOptions as |strokes|}}
-      <div class='col-xs-4'>
-        <a {{action 'save' strokes}} class='btn {{if (eq strokes turn.strokes) 'btn-disabled' 'btn-primary'}} btn-block' disabled={{if (eq strokes turn.strokes) 'disabled'}}>{{if strokes strokes 'Skip'}}</a>
-      </div>
-    {{/each}}
-  </div>
-{{/liquid-if}}
+{{paper-divider}}

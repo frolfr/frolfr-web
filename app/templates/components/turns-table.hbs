@@ -1,44 +1,46 @@
-<div class='row'>
-  <div class='col-xs-6'>
-    <img src='http://res.cloudinary.com/frolfr/image/upload/v1499194556/imageedit_2_2404369998_tzf2on.png' alt='Hole #' width='50' height='50' class='pull-left' />
-    <h2 class='pull-left'>
-      {{holeNumber}}
-    </h2>
-  </div>
-  <div class='col-xs-6'>
-    <div class='pull-right'>
-      <a {{action 'savePar' 3}} class='btn btn-primary {{if (eq par 3) 'disabled'}}'>3</a>
-      <a {{action 'savePar' 4}} class='btn btn-primary {{if (eq par 4) 'disabled'}}'>4</a>
-      <a {{action 'savePar' 5}} class='btn btn-primary {{if (eq par 5) 'disabled'}}'>5</a>
-    </div>
+<div class='layout-row'>
+  <header class='hole-number-header'>
+    <span><img src='http://res.cloudinary.com/frolfr/image/upload/v1499194556/imageedit_2_2404369998_tzf2on.png' alt='Hole #' width='30' height='30' /></span>
+    <h2>Hole {{holeNumber}}</h2>
+  </header>
+
+  <span class='flex'></span>
+
+  <div>
+    {{#paper-button primary=true raised=(not-eq par 3) disabled=(eq par 3) onClick=(action 'savePar' 3) class='hole-pars'}}3{{/paper-button}}
+    {{#paper-button primary=true raised=(not-eq par 4) disabled=(eq par 4) onClick=(action 'savePar' 4) class='hole-pars'}}4{{/paper-button}}
+    {{#paper-button primary=true raised=(not-eq par 5) disabled=(eq par 5) onClick=(action 'savePar' 5) class='hole-pars'}}5{{/paper-button}}
   </div>
 </div>
 
+{{#paper-list}}
+  {{#each turns as |turn|}}
+    {{turn-form
+      turn=turn
+      turns=turns}}
+  {{/each}}
+{{/paper-list}}
 
-{{#each turns as |turn|}}
-  {{turn-form
-    edit=(action 'edit')
-    editId=editId
-    turn=turn
-    turns=turns}}
-{{/each}}
+{{#paper-toolbar as |toolbar|}}
+  {{#toolbar.tools}}
+    {{#link-to 'round.turns' round previousHoleNumber}}
+      {{#paper-button disabled=(not previousHoleNumber)}}
+        {{paper-icon 'arrow back'}}
+      {{/paper-button}}
+    {{/link-to}}
 
-<div class='row'>
-  <div class='col-xs-4'>
-    {{#if previousHoleNumber}}
-      {{#link-to 'round.turns' round previousHoleNumber class='btn btn-block'}}
-        <span class='glyphicon glyphicon-chevron-left'></span>
-      {{/link-to}}
-    {{/if}}
-  </div>
-  <div class='col-xs-4'>
-    {{link-to 'Summary' 'round' round class='btn btn-primary btn-block'}}
-  </div>
-  <div class='col-xs-4'>
-    {{#if nextHoleNumber}}
-      {{#link-to 'round.turns' round nextHoleNumber class='btn btn-block'}}
-        <span class='glyphicon glyphicon-chevron-right'></span>
-      {{/link-to}}
-    {{/if}}
-  </div>
-</div>
+    <span class='flex'></span>
+
+    {{#link-to 'round' round}}
+      {{#paper-button}}Summary{{/paper-button}}
+    {{/link-to}}
+
+    <span class='flex'></span>
+
+    {{#link-to 'round.turns' round nextHoleNumber}}
+      {{#paper-button disabled=(not nextHoleNumber)}}
+        {{paper-icon 'arrow forward'}}
+      {{/paper-button}}
+    {{/link-to}}
+  {{/toolbar.tools}}
+{{/paper-toolbar}}

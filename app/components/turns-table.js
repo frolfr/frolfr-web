@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  editId: null,
   turns: null,
 
   holeNumber: Ember.computed('turns.firstObject.holeNumber', function() {
@@ -28,14 +27,6 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    edit(turnId) {
-      if (this.get('editId') === turnId) {
-        return this.set('editId', null);
-      }
-
-      this.set('editId', turnId);
-    },
-
     savePar(par) {
       const turns = this.get('turns');
 
