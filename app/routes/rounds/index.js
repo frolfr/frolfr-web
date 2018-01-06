@@ -8,7 +8,7 @@ export default ApplicationRoute.extend({
         number: params.page,
         size: params.size
       },
-      include: 'scorecards'
+      include: 'scorecards,scorecards.turns'
     });
   },
 

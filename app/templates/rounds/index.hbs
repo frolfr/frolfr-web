@@ -8,7 +8,7 @@
 {{/paper-tabs}}
 
 {{#each model as |round|}}
-  {{round-resource round=round goToRound=(action 'goToRound')}}
+  {{round-resource round=round scorecards=round.scorecards goToRound=(action 'goToRound')}}
 {{/each}}
 
 {{#each-in model.meta.pagination as |key value|}}
