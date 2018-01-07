@@ -15,7 +15,7 @@ export default Component.extend({
   usersFilter: 'users',
 
   courses: null,
-  nearByCourses: null,
+  nearbyCourses: null,
   users: null,
   allUsers: null,
 
@@ -33,7 +33,7 @@ export default Component.extend({
     if (this.get('courseFilter') === 'all') {
       return this.get('courses');
     } else {
-      return this.get('nearByCourses');
+      return this.get('nearbyCourses');
     }
   }),
 
@@ -42,7 +42,7 @@ export default Component.extend({
     const store = this.get('store');
 
     store.findAll('course').then((courses) => this.set('courses', courses));
-    this.set('nearByCourses', []); //empty for now
+    this.set('nearbyCourses', []); //empty for now
 
     // @todo
     // refactor to use user.users once we have users up and running
