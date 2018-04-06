@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   turns: null,
+  parOptions: [3, 4, 5],
 
   holeNumber: Ember.computed('turns.firstObject.holeNumber', function() {
     return this.get('turns.firstObject.holeNumber');
@@ -15,8 +16,21 @@ export default Ember.Component.extend({
     return holeNumber + 1;
   }),
 
-  par: Ember.computed('turns.firstObject.par', function() {
-    return this.get('turns.firstObject.par');
+  par: Ember.computed('turns.[]', {
+    get() {
+      return this.get('turns.firstObject.par');
+    },
+
+    set(key, par) {
+      const turns = this.get('turns');
+
+      turns.forEach(function(turn) {
+        turn.set('par', par);
+        turn.save();
+      });
+
+      return par;
+    }
   }),
 
   previousHoleNumber: Ember.computed('holeNumber', function() {
@@ -24,16 +38,5 @@ export default Ember.Component.extend({
     if (holeNumber === 1) { return; }
 
     return holeNumber - 1;
-  }),
-
-  actions: {
-    savePar(par) {
-      const turns = this.get('turns');
-
-      turns.forEach(function(turn) {
-        turn.set('par', par);
-        turn.save();
-      });
-    }
-  }
+  })
 });

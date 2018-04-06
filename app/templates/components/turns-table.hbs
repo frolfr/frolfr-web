@@ -1,15 +1,20 @@
 <div class='layout-row'>
   <header class='hole-number-header'>
     <span><img src='http://res.cloudinary.com/frolfr/image/upload/v1499194556/imageedit_2_2404369998_tzf2on.png' alt='Hole #' width='30' height='30' /></span>
-    <h2>Hole {{holeNumber}}</h2>
+    <h2>{{holeNumber}}</h2>
   </header>
 
   <span class='flex'></span>
 
-  <div>
-    {{#paper-button primary=true raised=(not-eq par 3) disabled=(eq par 3) onClick=(action 'savePar' 3) class='hole-pars'}}3{{/paper-button}}
-    {{#paper-button primary=true raised=(not-eq par 4) disabled=(eq par 4) onClick=(action 'savePar' 4) class='hole-pars'}}4{{/paper-button}}
-    {{#paper-button primary=true raised=(not-eq par 5) disabled=(eq par 5) onClick=(action 'savePar' 5) class='hole-pars'}}5{{/paper-button}}
+  <div class='par-header'>
+    {{#paper-select
+      label='Par'
+      options=parOptions
+      selected=par
+      onChange=(action (mut par))
+      as |par|}}
+      {{par}}
+    {{/paper-select}}
   </div>
 </div>
 
@@ -32,7 +37,7 @@
     <span class='flex'></span>
 
     {{#link-to 'round' round}}
-      {{#paper-button}}Summary{{/paper-button}}
+      {{#paper-button}}{{paper-icon 'grid on'}}{{/paper-button}}
     {{/link-to}}
 
     <span class='flex'></span>

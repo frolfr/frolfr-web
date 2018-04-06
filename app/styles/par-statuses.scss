@@ -4,6 +4,10 @@
   border: 1px solid;
   line-height: 150%;
 
+  &.par-scorekeeper {
+    padding: 0.25em;
+  }
+
   &.below-par {
     border-radius: 50%;
     border-color: #04B45F;

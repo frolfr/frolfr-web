@@ -2,14 +2,18 @@
   <div class='md-list-item-text'>
     {{user-avatar user=turn.scorecard.user classNames='avatar md-avatar'}}
     <br>
-    <span>{{turn.scorecard.user.initials}}</span>
+    <span>{{turn.scorecard.user.firstName}}</span>
   </div>
   <div class='md-list-item-text'>
-    {{#paper-button raised=true disabled=(lt turn.strokes 1) mini=true onClick=(action 'subtractOne')}}-{{/paper-button}}
-    <span class='par-status {{status}}'>
+    {{#paper-button raised=true disabled=(lt turn.strokes 1) mini=true onClick=(action 'subtractOne')}}
+      {{paper-icon 'remove'}}
+    {{/paper-button}}
+    <span class='par-status {{status}} par-scorekeeper'>
       {{if turn.strokes turn.strokes '-'}}
     </span>
-    {{#paper-button raised=true disabled=(gte turn.strokes 8) mini=true onClick=(action 'addOne')}}+{{/paper-button}}
+    {{#paper-button raised=true disabled=(gte turn.strokes 8) mini=true onClick=(action 'addOne')}}
+      {{paper-icon 'add'}}
+    {{/paper-button}}
   </div>
   <div class='md-list-item-text'>
     <h4>{{turn.scorecard.total}} ({{turn.scorecard.score}})</h4>
