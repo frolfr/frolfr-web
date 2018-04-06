@@ -1,14 +1,23 @@
 import Ember from 'ember';
+const { Component, computed, inject } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
+  filter: '',
   filteredList: null,
   key: 'name',
-  modelName: null,
-  store: Ember.inject.service(),
+  modelName: '',
+
+  router: inject.service(),
+  store: inject.service(),
+
+  label: computed('modelName', function() {
+    return 'Search for ' + this.get('modelName').capitalize();
+  }),
 
   actions: {
-    autoComplete() {
-      const filter = this.get('filter');
+    autoComplete(filter) {
+      this.set('filter', filter);
+
       const filterObject = {};
       filterObject[this.get('key')] = filter;
       const modelName = this.get('modelName');
@@ -20,6 +29,10 @@ export default Ember.Component.extend({
       } else {
         this.set('filteredList', []);
       }
+    },
+
+    transitionTo(modelName, item) {
+      this.get('router').transitionTo(modelName, item);
     }
   }
 });

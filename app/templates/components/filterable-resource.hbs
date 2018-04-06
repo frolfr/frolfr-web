@@ -1,18 +1,19 @@
-{{#paper-autocomplete
-  allowClear=true
-  options=filteredList
-  searchText=(readonly filter)
-  onSearchTextChange=(action (mut filter))
-  search=(action 'autoComplete')
-  searchField='name'
-  selected=selectedItem
-  labelPath='name'
-  placeholder='Search'
-  onSelectionChange=(action (mut selectedItem))
-  as |item autocomplete|
+{{paper-input
+  class='layout-row flex'
+  label=label
+  value=filter
+  onChange=(action 'autoComplete')
 }}
-  {{paper-autocomplete-highlight
-    label=item.name
-    searchText=autocomplete.searchText
-    flags='i'}}
-{{/paper-autocomplete}}
+
+{{#paper-list}}
+  {{#each filteredList as |item|}}
+    {{#paper-item onClick=(action 'transitionTo' modelName item)}}
+      {{#if (eq modelName 'user')}}
+        {{user-avatar user=item classNames='avatar md-avatar'}}
+      {{/if}}
+      <div class='md-list-item-text'>
+        <h4>{{item.name}}</h4>
+      </div>
+    {{/paper-item}}
+  {{/each}}
+{{/paper-list}}

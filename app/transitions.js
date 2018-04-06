@@ -42,6 +42,13 @@ export default function(){
   );
 
   this.transition(
+    this.fromRoute('users'),
+    this.toRoute('user'),
+    this.use('toLeft'),
+    this.reverse('toRight')
+  );
+
+  this.transition(
     this.fromRoute('scorecards'),
     this.toRoute('round'),
     this.use('toLeft'),
