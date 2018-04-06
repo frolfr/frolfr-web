@@ -1,7 +1,11 @@
-{{#each model as |scorecard|}}
-  <li>
-    {{#link-to 'round' scorecard.roundId}}
-      {{scorecard.createdAt}}
-    {{/link-to}}
-  </li>
+{{#each model as |round|}}
+  {{round-resource round=round scorecards=round.scorecards goToRound=(action 'goToRound')}}
 {{/each}}
+
+{{#each-in model.meta.pagination as |key value|}}
+  {{#link-to 'user.scorecards' userId (query-params page=value.number) classNames='btn btn-primary'}}
+    {{#paper-button}}
+      {{key}}
+    {{/paper-button}}
+  {{/link-to}}
+{{/each-in}}
