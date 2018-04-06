@@ -12,7 +12,8 @@ export default Model.extend({
   middleName: attr('string'),
   password: attr('string'),
 
-  scorecards: hasMany('scorecards'),
+  scorecards: hasMany('scorecard'),
+  rounds: hasMany('round'),
 
   name: computed('_fullNames', function() {
     return this.get('_fullNames').join(' ');

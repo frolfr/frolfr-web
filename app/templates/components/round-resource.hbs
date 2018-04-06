@@ -5,9 +5,6 @@
         {{#text.headline}}{{round.course.name}}{{/text.headline}}
         {{#text.subhead}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.subhead}}
       {{/title.text}}
-      {{#title.media size='md'}}
-        <div class='score par-status belowPar'>{{score}}</div>
-      {{/title.media}}
     {{/card.title}}
     {{#card.content}}
       {{#each round.users as |user|}}

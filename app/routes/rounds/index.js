@@ -1,5 +1,5 @@
-import Ember from 'ember';
 import ApplicationRoute from 'frolfr-web/routes/application';
+import Ember from 'ember';
 
 export default ApplicationRoute.extend({
   model(params) {
@@ -8,7 +8,7 @@ export default ApplicationRoute.extend({
         number: params.page,
         size: params.size
       },
-      include: 'scorecards,scorecards.turns'
+      include: 'course,scorecards,scorecards.turns,users'
     });
   },
 
