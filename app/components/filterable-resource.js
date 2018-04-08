@@ -9,6 +9,7 @@ export default Component.extend({
 
   router: inject.service(),
   store: inject.service(),
+  ui: inject.service(),
 
   label: computed('modelName', function() {
     return 'Search for ' + this.get('modelName').capitalize();
@@ -29,6 +30,10 @@ export default Component.extend({
       } else {
         this.set('filteredList', []);
       }
+    },
+
+    toggleUi() {
+      this.get('ui').toggleUi();
     },
 
     transitionTo(modelName, item) {
