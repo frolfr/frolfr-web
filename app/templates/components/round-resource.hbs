@@ -2,8 +2,12 @@
   {{#paper-card as |card|}}
     {{#card.title as |title|}}
       {{#title.text as |text|}}
-        {{#text.headline}}{{round.course.name}}{{/text.headline}}
-        {{#text.subhead}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.subhead}}
+        {{#if ignoreCourseName}}
+          {{#text.headline}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.headline}}
+        {{else}}
+          {{#text.headline}}{{round.course.name}}{{/text.headline}}
+          {{#text.subhead}}{{moment-format round.createdAt 'MMMM DD, YYYY'}}{{/text.subhead}}
+        {{/if}}
       {{/title.text}}
     {{/card.title}}
     {{#card.content}}
