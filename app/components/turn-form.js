@@ -9,9 +9,6 @@ export default Ember.Component.extend({
   status: Ember.computed('turn.score', function() {
     const score = this.get('turn.score');
 
-    // TODO Fix style
-    if (score === null) { return; }
-
     if (0 < score - 1) { return 'multiple-above-par'; }
     else if (0 < score) { return 'above-par'; }
     else if (score === 0 || score === null) { return 'at-par'; }
