@@ -1,5 +1,11 @@
 {{#each model as |round|}}
-  {{round-resource
-    ignoreCourseName=true
-    round=round}}
+  {{round-resource ignoreCourseName=true round=round}}
 {{/each}}
+
+{{#each-in model.meta.pagination as |key value|}}
+  {{#link-to 'course.scorecards' courseId (query-params page=value.number) classNames='btn btn-primary'}}
+    {{#paper-button}}
+      {{key}}
+    {{/paper-button}}
+  {{/link-to}}
+{{/each-in}}
