@@ -8,7 +8,7 @@ export default Service.extend({
   hideAll: false,
 
   isFabVisible: computed('hideAll', 'router.currentRouteName', function() {
-    if (this.get('hideAll')) { return false };
+    if (this.get('hideAll')) { return false }
 
     const disabledRoutes = [ 'rounds.new', 'round.turns' ];
     const currentRouteName = this.get('router.currentRouteName');
@@ -16,7 +16,7 @@ export default Service.extend({
   }),
 
   isBottomNavVisible: computed('hideAll', 'router.currentRouteName', function() {
-    if (this.get('hideAll')) { return false };
+    if (this.get('hideAll')) { return false }
 
     const disabledRoutes = [ 'rounds.new', 'round.turns' ];
     const currentRouteName = this.get('router.currentRouteName');
