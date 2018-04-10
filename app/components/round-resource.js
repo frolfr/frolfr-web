@@ -8,9 +8,5 @@ export default Component.extend({
 
   courseName: computed('round.course.name', function() {
     return this.get('round.course.name');
-  }), 
-
-  click() {
-    this.attrs.goToRound(this.get('round'));
-  }
+  })
 });

@@ -1,5 +1,5 @@
 {{#each model as |round|}}
-  {{round-resource round=round scorecards=round.scorecards goToRound=(action 'goToRound')}}
+  {{round-resource round=round scorecards=round.scorecards}}
 {{/each}}
 
 {{#each-in model.meta.pagination as |key value|}}
