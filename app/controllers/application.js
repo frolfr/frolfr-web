@@ -4,11 +4,5 @@ const { Controller, inject } = Ember;
 
 export default Controller.extend({
   sessionAccount: inject.service(),
-  session: inject.service(),
-
-  actions: {
-    logout() {
-      this.get('session').invalidate();
-    }
-  }
+  session: inject.service()
 });

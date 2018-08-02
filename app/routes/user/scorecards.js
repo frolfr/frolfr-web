@@ -11,7 +11,7 @@ export default ApplicationRoute.extend({
       filter: {
         userId: this.modelFor('user').get('id')
       },
-      include: 'course,scorecards,scorecards.turns,users'
+      include: 'course,scorecards,scorecards.turns,scorecards.user'
     });
   },
 

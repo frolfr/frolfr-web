@@ -8,6 +8,15 @@ export default Route.extend(ApplicationRouteMixin, ResetScrollPositionMixin, {
   sessionAccount: inject.service(),
 
   beforeModel() {
-    this.get('sessionAccount').loadCurrentUser();
+    return this._loadCurrentUser();
+  },
+
+  sessionAuthenticated() {
+    this._super(...arguments);
+    this._loadCurrentUser();
+  },
+
+  _loadCurrentUser() {
+    return this.get('sessionAccount').loadCurrentUser().catch(() => this.get('session').invalidate());
   }
 });

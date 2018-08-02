@@ -11,8 +11,8 @@
       {{/title.text}}
     {{/card.title}}
     {{#card.content}}
-      {{#each round.users as |user|}}
-        {{user-avatar user=user}}
+      {{#each round.scorecards as |scorecard|}}
+        {{user-avatar user=scorecard.user}}
       {{/each}}
     {{/card.content}}
   {{/paper-card}}

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { inject, Service } = Ember;
+const { inject, Service, RSVP } = Ember;
 
 export default Service.extend({
   session: inject.service(),
@@ -8,11 +8,13 @@ export default Service.extend({
 
   loadCurrentUser() {
     if (this.get('session.isAuthenticated')) {
-      this.get('store')
+      return this.get('store')
       .queryRecord('user', { me: true })
       .then((user) => {
         this.set('currentUser', user);
       });
+    } else {
+      return RSVP.resolve();
     }
   }
 });

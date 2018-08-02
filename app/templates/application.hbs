@@ -7,14 +7,11 @@
     <span class="flex"></span>
 
     {{#if session.isAuthenticated}}
-      {{#link-to 'user.scorecards' sessionAccount.currentUser.id}}
+      {{#link-to 'profile'}}
         {{#paper-button raised=true mini=true class='avatar-link'}}
           {{user-avatar user=sessionAccount.currentUser}}
         {{/paper-button}}
       {{/link-to}}
-      {{#paper-button raised=true onClick=(action 'logout')}}
-        Log Out
-      {{/paper-button}}
     {{else}}
       {{#link-to 'login'}}
         {{#paper-button raised=true}}
